@@ -68,7 +68,10 @@ public class StudentJDBC implements StudentDAO {
 	}
 	@Override
 	public int addNewStudent(Student student) {
-		return 1;
+		String sql = "insert into Students ( Name, DateOfBirth, Gender, Email, Password, Address, Phone, Status)"
+				+ "values(?,?,?,?,'123456',?,?,'1')";
+		return jdbcTemplateObject.update(sql,
+				new Object[] {student.getName(),student.getDateOfBirth(),student.isGender(),student.getEmail(),student.getAddress(),student.getPhone()});
 	}
 
 	@Override

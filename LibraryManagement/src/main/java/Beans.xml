@@ -18,7 +18,7 @@
 		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
 
 	<!-- Definition for studentJDBCTemplate bean -->
-	<bean id="nhanVienJDBC" class="com.group.model.DAO.NhanVien.NhanVienJDBC">
+	<bean id="staffJDBC" class="com.group.model.DAO.Staff.StaffJDBC">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	

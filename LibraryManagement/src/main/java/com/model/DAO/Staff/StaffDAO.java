@@ -14,7 +14,11 @@ public interface StaffDAO {
 	
 	public Staff getStaffById(int id);
 
-	public int deleteStaffById(int id);
+	public int deactivateStaffById(int id);
+	
+	public int reactiveStaffById(int id);
 
 	public int editStaffById(int id);
+	
+	public int resetPasswordById(int id);
 }

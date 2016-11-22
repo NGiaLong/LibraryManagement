@@ -72,7 +72,7 @@
 						<td>${listValue.getAddress() }</td>
 						<td>${listValue.getPhone() }</td>
 						<td><a href="#">Sửa </a></td>
-						<td><a href="#">Ngưng hoạt động</a></td>
+						<td><a href="/LibraryManagement/deactivated-staff-management/${listValue.getId()}">Ngưng hoạt động</a></td>
 					</tr>
 					<%
 						i++;

@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -19,7 +20,12 @@ public class LoginController {
 		return new LoginBean();
 	}
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String staffmanagement(ModelMap model, HttpServletRequest request) {
+	public String loginView(ModelMap model, HttpServletRequest request) {
 		return "login";
+	}
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String loginProcess(@ModelAttribute("SpringWeb") LoginBean loginBean, ModelMap model, HttpServletRequest request, RedirectAttributes redirectAtt) {
+		redirectAtt.addFlashAttribute("success", "Đăng nhập thành công!");
+		return "redirect:/index";
 	}
 }

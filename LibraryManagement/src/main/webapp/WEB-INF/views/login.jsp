@@ -32,7 +32,7 @@
 								<fieldset>
 									<span class="add-on"><i class="icon-user"></i></span>
 									<form:input path="id" required="required"
-										placeholder="Mã nhân viên" maxlength="255" type="text"
+										placeholder="Tên đăng nhập" maxlength="255" type="text"
 										id="UserMaNhanVien" />
 								</fieldset>
 

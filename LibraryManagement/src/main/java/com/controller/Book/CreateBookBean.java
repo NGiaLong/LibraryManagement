@@ -1,21 +1,16 @@
-package com.model;
+package com.controller.Book;
 
-public class Book {
-	int id;
+import javax.validation.constraints.Past;
+
+public class CreateBookBean {
+	@Past	
 	String title;
 	String description;
 	String author;
 	int edition;
 	String publisher;
 	int categoryId;
-	String categoryName;
 	boolean status;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public String getTitle() {
 		return title;
 	}
@@ -57,12 +52,6 @@ public class Book {
 	}
 	public void setStatus(boolean status) {
 		this.status = status;
-	}
-	public String getCategoryName() {
-		return categoryName;
-	}
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
 	}
 	
 }

@@ -127,7 +127,7 @@
 									xlink:href="#stroked-chevron-right"></use></svg> Ngừng hoạt động
 						</a></li>
 					</ul></li>
-				<li class="parent "><a href="#"> <span
+				<li class="parent "><a href="/LibraryManagement/Book"> <span
 						data-toggle="collapse" href="#sub-item-3"><svg
 								class="glyph stroked chevron-down"> <use
 								xlink:href="#stroked-chevron-down"></use></svg></span> Quản lý sách
@@ -141,7 +141,7 @@
 									class="glyph stroked chevron-right"> <use
 									xlink:href="#stroked-chevron-right"></use></svg> Import sách mới
 						</a></li>
-						<li><a class="" href="#"> <svg
+						<li><a class="" href="/LibraryManagement/Book/remain"> <svg
 									class="glyph stroked chevron-right"> <use
 									xlink:href="#stroked-chevron-right"></use></svg> Sách còn trong kho
 						</a></li>

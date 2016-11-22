@@ -18,7 +18,7 @@
 	<div id="page-wrapper" style="height: 100%">
 		<div class="container-fluid">
 			<h1>Sửa độc viên</h1>
-				<a href="/LibraryManagement/reset-password/${student.getId() }" class="btn btn-primary" >Khôi phục mật khẩu</a>
+				<a href="/LibraryManagement/reset-student-password/${student.getId() }" class="btn btn-primary" >Khôi phục mật khẩu</a>
 				<div></br></div>
 			<form:form id="form" modelAttribute="editStudentBean">
 				<div class="row">

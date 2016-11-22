@@ -56,6 +56,8 @@
 								i++;
 							%>
 				</c:forEach>
+				
+				</tbody></table>
 	</div>
 	<!-- /.container-fluid -->
 </div>

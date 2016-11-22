@@ -25,9 +25,17 @@ public class BookController {
 	public String getBooks(ModelMap model, HttpServletRequest request){
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		BookJDBC bookJDBC = (BookJDBC) context.getBean("bookJDBC");
-		List<Book> listBook = bookJDBC.getAll();
-		System.out.println(listBook);
+		List<Book> listBook = bookJDBC.getAll();		
 		model.addAttribute("listBook", listBook);
 		return "indexBook";
+	}
+	
+	@RequestMapping(value="/add", method =  RequestMethod.GET)
+	public String addBook(ModelMap model, HttpServletRequest request){
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		CategoryJDBC categoryJDBC = (CategoryJDBC) context.getBean("categoryJDBC");
+		List<Category> listCategory = categoryJDBC.getAll();
+		model.addAttribute("listCategory",listCategory);
+		return "addBook";
 	}
 }

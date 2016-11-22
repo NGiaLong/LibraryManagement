@@ -24,10 +24,9 @@
 	<c:if test="${error != null }">
 		<div class="alert alert-danger">${error }</div>
 	</c:if>
-	<div class="content">		
-			<a href="Category/add"><input
-				class="btn btn-primary" type="submit"
-				value="Tạo mới sách"></a>		
+	<div class="content">
+		<a href="Category/add"><input class="btn btn-primary"
+			type="submit" value="Tạo mới sách"></a>
 		<div>
 			</br>
 		</div>
@@ -56,12 +55,18 @@
 						<td>${listValue.getEdition()}</td>
 						<td>${listValue.getPublisher()}</td>
 						<td>${listValue.getCategoryName()}</td>
-						
-						<td>${listValue.isStatus()}</td>						
+						<td><c:choose>
+								<c:when test="${listValue.isStatus()}">
+									<c:out value="Còn"></c:out>
+								</c:when>
+								<c:otherwise>
+									<c:out value="Đã mượn"></c:out>
+								</c:otherwise>
+							</c:choose></td>
 						<td><a href="Book/edit/${listValue.getId()}"
 							class="btn btn-primary">Sửa </a> <a
-							href="Book/delete/${listValue.getId()}"
-							class="btn btn-danger"> Xóa</a></td>
+							href="Book/delete/${listValue.getId()}" class="btn btn-danger">
+								Xóa</a></td>
 					</tr>
 					<%
 						i++;

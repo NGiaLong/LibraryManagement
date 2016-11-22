@@ -64,7 +64,7 @@ public class StaffJDBC implements StaffDAO {
 	@Override
 	public Staff getStaffById(int id) {
 		String sql = "select * from Staffs where Id = '"+id+"'";
-		Staff staff = (Staff) jdbcTemplateObject.query(sql, new StaffMapper());
+		Staff staff = (Staff) jdbcTemplateObject.queryForObject(sql, new StaffMapper());
 		return staff;
 	}
 	@Override

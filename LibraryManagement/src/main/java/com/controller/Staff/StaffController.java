@@ -88,7 +88,21 @@ public class StaffController {
 		} else {
 			redirectAtt.addFlashAttribute("error", "Khôi phục mật khẩu thất bại!");
 		}
-		return "redirect:/staffmanagement";
+		return "redirect:/staff-management";
+	}
+	
+	@RequestMapping(value = "/add-staff", method = RequestMethod.GET)
+	public String addstaff(ModelMap model, HttpServletRequest request) {
+		return "addstaff";
+	}
+	
+	@RequestMapping(value = "/edit-staff/{id}", method = RequestMethod.GET)
+	public String editstaff(ModelMap model, HttpServletRequest request, @PathVariable int id) {
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		StaffJDBC staffJDBC = (StaffJDBC) context.getBean("staffJDBC");
+		Staff st = staffJDBC.getStaffById(id);
+		model.addAttribute("staff", st);
+		return "editstaff";
 	}
 
 }

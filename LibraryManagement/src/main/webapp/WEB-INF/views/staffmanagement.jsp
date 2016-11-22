@@ -29,7 +29,7 @@
 		<div class="row">
 			<div class="col-lg-10"></div>
 			<div class="col-lg-2">
-				<a href="#"><input class="btn btn-primary btn-large btn-block"
+				<a href="/LibraryManagement/add-staff"><input class="btn btn-primary btn-large btn-block"
 					type="submit" value="Tạo nhân viên"></a>
 
 			</div>
@@ -71,7 +71,7 @@
 						<td>${listValue.getEmail() }</td>
 						<td>${listValue.getAddress() }</td>
 						<td>${listValue.getPhone() }</td>
-						<td><a href="#">Sửa </a></td>
+						<td><a href="/LibraryManagement/edit-staff/${listValue.getId()}">Sửa </a></td>
 						<td><a href="/LibraryManagement/deactivated-staff-management/${listValue.getId()}">Ngưng hoạt động</a></td>
 					</tr>
 					<%

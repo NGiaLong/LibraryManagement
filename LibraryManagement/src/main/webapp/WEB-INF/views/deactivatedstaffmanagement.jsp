@@ -45,7 +45,7 @@
 						<td><%=i%></td>
 						<td>${listValue.getId()}</td>
 						<td>${listValue.getName()}</td>
-							<td><a href="#"> Tái hoạt động</a></td>
+							<td><a href="/LibraryManagement/reactive-staff/${listValue.getId()}"> Tái hoạt động</a></td>
 					</tr>
 					<%
 						i++;

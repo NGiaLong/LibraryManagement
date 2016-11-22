@@ -45,8 +45,15 @@ public class StaffJDBC implements StaffDAO {
 	}
 
 	@Override
-	public int deleteStaffById(int id) {
-		return 1;
+	public int deactivateStaffById(int id) {
+		String sql = "update Staffs set Status = '0' where Id ='"+id+"'";
+		return jdbcTemplateObject.update(sql);
+	}
+	
+	@Override
+	public int reactiveStaffById(int id) {
+		String sql = "update Staffs set Status = '1' where Id ='"+id+"'";
+		return jdbcTemplateObject.update(sql);
 	}
 
 	@Override
@@ -56,7 +63,13 @@ public class StaffJDBC implements StaffDAO {
 	
 	@Override
 	public Staff getStaffById(int id) {
-		Staff st = new Staff();
-		return st;
+		String sql = "select * from Staffs where Id = '"+id+"'";
+		Staff staff = (Staff) jdbcTemplateObject.query(sql, new StaffMapper());
+		return staff;
+	}
+	@Override
+	public int resetPasswordById(int id) {
+		String sql = "update Staffs set Password = '123456' where Id = '"+id+"'";
+		return jdbcTemplateObject.update(sql);
 	}
 }

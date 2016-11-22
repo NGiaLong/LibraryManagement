@@ -7,7 +7,6 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.model.Student;
-import com.model.Student;
 import com.model.DAO.Student.StudentMapper;
 
 public class StudentJDBC implements StudentDAO {
@@ -80,7 +79,9 @@ public class StudentJDBC implements StudentDAO {
 	}
 
 	@Override
-	public int editStudentById(int id) {
-		return 1;
+	public int editStudentById(int id, Student student) {
+		String sql = "update Students set Name = ? , DateOfBirth = ? , Gender = ? , Email = ?  , Address = ? , Phone = ? where id = ?";
+		return jdbcTemplateObject.update(sql, new Object[] { student.getName(), student.getDateOfBirth(), student.isGender(),
+				student.getEmail(), student.getAddress(), student.getPhone(),id });
 	}
 }

@@ -103,14 +103,17 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/add-student", method = RequestMethod.POST)
-	public String addstudentProcess(@ModelAttribute("SpringWeb") AddStudentBean addStudentBean,ModelMap model, HttpServletRequest request, RedirectAttributes redirectAtt) {
+	public String addstudentProcess(@ModelAttribute("SpringWeb") AddStudentBean addStudentBean, ModelMap model,
+			HttpServletRequest request, RedirectAttributes redirectAtt) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		StudentJDBC studentJDBC = (StudentJDBC) context.getBean("studentJDBC");
-		int addStudent = studentJDBC.addNewStudent(new Student(addStudentBean.getName(), addStudentBean.getDateOfBirth(), addStudentBean.isGender(), addStudentBean.getEmail(), addStudentBean.getAddress(), addStudentBean.getPhone()));
+		int addStudent = studentJDBC.addNewStudent(
+				new Student(addStudentBean.getName(), addStudentBean.getDateOfBirth(), addStudentBean.isGender(),
+						addStudentBean.getEmail(), addStudentBean.getAddress(), addStudentBean.getPhone()));
 		if (addStudent == 1) {
-			redirectAtt.addFlashAttribute("success", "Tạo nhân viên thành công!");
+			redirectAtt.addFlashAttribute("success", "Tạo đọc viên thành công!");
 		} else {
-			redirectAtt.addFlashAttribute("error", "Tạo nhân viên thất bại!");
+			redirectAtt.addFlashAttribute("error", "Tạo đọc viên thất bại!");
 		}
 		return "redirect:/student-management";
 	}
@@ -125,11 +128,15 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/edit-student/{id}", method = RequestMethod.POST)
-	public String editstudentProcess(ModelMap model, HttpServletRequest request, @PathVariable int id) {
+	public String editstudentProcess(@ModelAttribute("SpringWeb") EditStudentBean editStudentBean, ModelMap model, HttpServletRequest request, @PathVariable int id, RedirectAttributes redirectAtt) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		StudentJDBC studentJDBC = (StudentJDBC) context.getBean("studentJDBC");
-		Student st = studentJDBC.getStudentById(id);
-		model.addAttribute("student", st);
+		int editStudent = studentJDBC.editStudentById(id, new Student(editStudentBean.getName(), editStudentBean.getDateOfBirth(), editStudentBean.isGender(), editStudentBean.getEmail(), editStudentBean.getAddress(), editStudentBean.getPhone()));
+		if (editStudent == 1) {
+			redirectAtt.addFlashAttribute("success", "Sửa đọc viên thành công!");
+		} else {
+			redirectAtt.addFlashAttribute("error", "Sửa đọc viên thất bại!");
+		}
 		return "redirect:/student-management";
 	}
 }

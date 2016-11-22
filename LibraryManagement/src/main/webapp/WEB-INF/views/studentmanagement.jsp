@@ -17,7 +17,7 @@
 	</div>
 	<!--/.row-->
 	<div class="header">
-		<h1>Quản lý độc giả</h1>
+		<h1>Quản lý đọc giả</h1>
 	</div>
 	<c:if test="${success != null }">
 		<div class="alert alert-success">${success }</div>
@@ -30,7 +30,7 @@
 			<div class="col-lg-10"></div>
 			<div class="col-lg-2">
 				<a href="/LibraryManagement/add-student"><input class="btn btn-primary btn-large btn-block"
-					type="submit" value="Tạo độc giả"></a>
+					type="submit" value="Tạo đọc giả"></a>
 
 			</div>
 		</div>

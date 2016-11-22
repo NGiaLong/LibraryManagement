@@ -122,11 +122,18 @@ public class StaffController {
 	}
 
 	@RequestMapping(value = "/edit-staff/{id}", method = RequestMethod.POST)
-	public String editstaffProcess(ModelMap model, HttpServletRequest request, @PathVariable int id) {
+	public String editstaffProcess(@ModelAttribute("SpringWeb") EditStaffBean editStaffBean, ModelMap model,
+			HttpServletRequest request, @PathVariable int id, RedirectAttributes redirectAtt) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		StaffJDBC staffJDBC = (StaffJDBC) context.getBean("staffJDBC");
-		Staff st = staffJDBC.getStaffById(id);
-		model.addAttribute("staff", st);
+		int editStaff = staffJDBC.editStaffById(id,
+				new Staff(editStaffBean.getName(), editStaffBean.getDateOfBirth(), editStaffBean.isGender(),
+						editStaffBean.getEmail(), editStaffBean.getAddress(), editStaffBean.getPhone()));
+		if (editStaff == 1) {
+			redirectAtt.addFlashAttribute("success", "Sửa nhân viên thành công!");
+		} else {
+			redirectAtt.addFlashAttribute("error", "Sửa nhân viên thất bại!");
+		}
 		return "redirect:/staff-management";
 	}
 

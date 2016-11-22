@@ -17,16 +17,16 @@
 	</div>
 	<div id="page-wrapper" style="height: 100%">
 		<div class="container-fluid">
-			<h1>Thêm độc viên</h1>
+			<h1>Thêm đọc giả</h1>
 			<form:form id="form" modelAttribute="addStudentBean">
 				<div class="row">
 					<div class="form-group col-sm-6 ">
-						<label class="control-label col-sm-4">Tên độc viên:</label>
+						<label class="control-label col-sm-4">Tên đọc giả:</label>
 						<div class="input-group col-sm-8">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span>
 							<form:input path="name" type="text" class="form-control"
-								id="inputPhone" name="inputPhone" placeholder="Tên nhân viên" />
+								id="inputPhone" name="inputPhone" placeholder="Tên đọc giả" />
 						</div>
 					</div>
 					<div class="form-group col-sm-6">

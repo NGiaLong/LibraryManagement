@@ -41,7 +41,10 @@ public class StaffJDBC implements StaffDAO {
 
 	@Override
 	public int addNewStaff(Staff staff) {
-		return 1;
+		String sql = "insert into Staffs ( Name, DateOfBirth, Gender, Email, Password, Address, Phone, Status)"
+				+ "values(?,?,?,?,'123456',?,?,'1')";
+		return jdbcTemplateObject.update(sql,
+				new Object[] {staff.getName(),staff.getDateOfBirth(),staff.isGender(),staff.getEmail(),staff.getAddress(),staff.getPhone()});
 	}
 
 	@Override

@@ -80,5 +80,15 @@ public class Staff {
 	public Staff() {
 		super();
 	}
+	public Staff(String name, String dateOfBirth, boolean gender, String email, String address, String phone) {
+		super();
+		this.name = name;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.email = email;
+		this.address = address;
+		this.phone = phone;
+	}
+	
 	
 }

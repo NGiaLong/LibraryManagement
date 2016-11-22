@@ -16,6 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.model.Student;
 import com.model.Student;
+import com.model.Student;
+import com.model.DAO.Student.StudentJDBC;
 import com.model.DAO.Student.StudentJDBC;
 import com.model.DAO.Student.StudentJDBC;
 import com.model.DAO.Student.StudentJDBC;
@@ -92,6 +94,10 @@ public class StudentController {
 	public String addstudent(ModelMap model, HttpServletRequest request) {
 		return "addstudent";
 	}
+	@RequestMapping(value = "/add-student", method = RequestMethod.POST)
+	public String addstudentProcess(ModelMap model, HttpServletRequest request) {
+		return "redirect:/student-management";
+	}
 	
 	@RequestMapping(value = "/edit-student/{id}", method = RequestMethod.GET)
 	public String editstudent(ModelMap model, HttpServletRequest request, @PathVariable int id) {
@@ -100,5 +106,13 @@ public class StudentController {
 		Student st = studentJDBC.getStudentById(id);
 		model.addAttribute("student", st);
 		return "editstudent";
+	}
+	@RequestMapping(value = "/edit-student/{id}", method = RequestMethod.POST)
+	public String editstudentProcess(ModelMap model, HttpServletRequest request, @PathVariable int id) {
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		StudentJDBC studentJDBC = (StudentJDBC) context.getBean("studentJDBC");
+		Student st = studentJDBC.getStudentById(id);
+		model.addAttribute("student", st);
+		return "redirect:/student-management";
 	}
 }

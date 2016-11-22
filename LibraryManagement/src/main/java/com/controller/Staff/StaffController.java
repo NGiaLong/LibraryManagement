@@ -1,4 +1,4 @@
-package com.controller.QuanLyNhanSu;
+package com.controller.Staff;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 //import com.group.model.DAO.NhanVien.NhanVienJDBC;
 
 @Controller
-public class QuanLyNhanSuController {
+public class StaffController {
 	private ApplicationContext context;
 	@RequestMapping(value = "/quan-ly-nhan-vien", method = RequestMethod.GET)
 	public String quanLyNhanVien(ModelMap model, HttpServletRequest request) {

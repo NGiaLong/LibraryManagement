@@ -7,6 +7,8 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.model.Student;
+import com.model.Student;
+import com.model.DAO.Student.StudentMapper;
 
 public class StudentJDBC implements StudentDAO {
 	private DataSource dataSource;
@@ -38,7 +40,32 @@ public class StudentJDBC implements StudentDAO {
 			return null;
 		}
 	}
-
+	
+	@Override
+	public Student getStudentById(int id){
+		String sql = "select * from Students where Id = '"+id+"'";
+		Student student = (Student) jdbcTemplateObject.queryForObject(sql, new StudentMapper());
+		return student;
+	}
+	
+	
+	@Override
+	public int deactivateStudentById(int id){
+		String sql = "update Students set Status = '0' where Id ='"+id+"'";
+		return jdbcTemplateObject.update(sql);
+	}
+	
+	@Override
+	public int reactiveStudentById(int id){
+		String sql = "update Students set Status = '1' where Id ='"+id+"'";
+		return jdbcTemplateObject.update(sql);
+	}
+	
+	@Override
+	public int resetPasswordById(int id){
+		String sql = "update Students set Password = '123456' where Id = '"+id+"'";
+		return jdbcTemplateObject.update(sql);
+	}
 	@Override
 	public int addNewStudent(Student student) {
 		return 1;

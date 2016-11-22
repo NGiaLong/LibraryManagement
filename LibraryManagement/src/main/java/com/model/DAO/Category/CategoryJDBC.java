@@ -25,6 +25,7 @@ public class CategoryJDBC implements CategoryDAO {
 			return listCategory;
 		} catch (NullPointerException ex) {
 			System.out.println(ex.getMessage());
+			System.out.println("loi o day");
 			return null;
 		}
 	}

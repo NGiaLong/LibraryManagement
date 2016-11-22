@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Fast Food Viet Store</title>
+<title>Library Management</title>
 
 <!-- CSS -->
 <link href="<c:url value="/resources/css/jquery-ui.min.css" />"
@@ -98,7 +98,7 @@
 		<ul class="nav menu">
 			<li><a href="#"><svg class="glyph stroked dashboard-dial">
 					<use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
-			<li class="parent "><a href="/LibaryManagement/quanlynhansu"> <span
+			<li class="parent "><a href="/LibraryManagement/staff-management"> <span
 					data-toggle="collapse" href="#sub-item-1"><svg
 							class="glyph stroked chevron-down"> <use
 							xlink:href="#stroked-chevron-down"></use></svg></span> Quản lý nhân viên

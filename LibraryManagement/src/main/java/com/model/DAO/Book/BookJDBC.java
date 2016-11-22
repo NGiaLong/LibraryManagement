@@ -31,7 +31,7 @@ public class BookJDBC implements BookDAO {
 
 	@Override
 	public Book getOne(int bookId) {
-		String sql = "SELECT b.Id,b.Title,b.Description, b.Author,b.Edition, b.Publisher,c.Id,c.Name,b.Status FROM Books b, Categories c WHERE b.CategoryId = c.Id AND Id = ?";
+		String sql = "SELECT b.Id,b.Title,b.Description, b.Author,b.Edition, b.Publisher,c.Id,c.Name,b.Status FROM Books b, Categories c WHERE b.CategoryId = c.Id AND b.Id = ?";
 		Book book = (Book) jdbcTemplateObject.queryForObject(sql, new Object[] { bookId }, new BookMapper());
 		return book;
 	}

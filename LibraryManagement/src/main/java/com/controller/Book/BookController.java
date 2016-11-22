@@ -8,6 +8,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -30,6 +32,16 @@ public class BookController {
 		return "indexBook";
 	}
 	
+	@ModelAttribute("createBookBean")
+	public CreateBookBean createBookBean() {
+		return new CreateBookBean();
+	}
+	
+	@ModelAttribute("editBookBean")
+	public EditBookBean editBookBean() {
+		return new EditBookBean();
+	}
+	
 	@RequestMapping(value="/add", method =  RequestMethod.GET)
 	public String addBook(ModelMap model, HttpServletRequest request){
 		context = new ClassPathXmlApplicationContext("Beans.xml");
@@ -38,4 +50,14 @@ public class BookController {
 		model.addAttribute("listCategory",listCategory);
 		return "addBook";
 	}
+	
+	@RequestMapping(value = "/edit/{id}",method = RequestMethod.GET)
+	public String editBook(@PathVariable int id, ModelMap model){
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		BookJDBC bookJDBC = (BookJDBC) context.getBean("bookJDBC");
+		Book book = bookJDBC.getOne(id);
+		model.addAttribute("book",book);
+		return "editBook";
+	}
+	
 }

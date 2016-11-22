@@ -61,38 +61,39 @@ public class CategoryController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value="/postEdit")
-	public String postEditCategory(ModelMap model, RedirectAttributes redirectAtt, HttpServletRequest request){
-		String cateName = request.getParameter("name");
+	public String postEditCategory(ModelMap model, RedirectAttributes redirectAtt, HttpServletRequest request){		
 		Category category = new Category();
-		category.setName(cateName);
+		category.setId(Integer.parseInt(request.getParameter("id")));
+		category.setName(request.getParameter("name"));
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		CategoryJDBC categoryJDBC = (CategoryJDBC) context.getBean("categoryJDBC");
-		int result = categoryJDBC.addCategory(category);
+		int result = categoryJDBC.updateCategory(category);
 		if (result == 1) {
-			redirectAtt.addFlashAttribute("success", "Thêm mới thể loại thành công");
+			redirectAtt.addFlashAttribute("success", "Chỉnh sửa thể loại thành công");
 		} else {
-			redirectAtt.addFlashAttribute("error", "Thêm mới thể loại thất bại");
+			redirectAtt.addFlashAttribute("error", "Chỉnh sửa thể loại thất bại");
 		}
 		return "redirect:/Category";
-	}
+	}	
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/delete")
-	public String deleteCategory(){
-		return "addCategory";
+	@RequestMapping(method = RequestMethod.GET, value = "/delete/{categoryId}")
+	public String deleteCategory(@PathVariable String categoryId, ModelMap model){
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		CategoryJDBC categoryJDBC = (CategoryJDBC) context.getBean("categoryJDBC");
+		Category category = categoryJDBC.getOne(Integer.parseInt(categoryId));
+		model.addAttribute(category);
+		return "deleteCategory";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value="/postDelete")
-	public String postDeleteCategory(ModelMap model, RedirectAttributes redirectAtt, HttpServletRequest request){
-		String cateName = request.getParameter("name");
-		Category category = new Category();
-		category.setName(cateName);
+	public String postDeleteCategory(ModelMap model, RedirectAttributes redirectAtt, HttpServletRequest request){				
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		CategoryJDBC categoryJDBC = (CategoryJDBC) context.getBean("categoryJDBC");
-		int result = categoryJDBC.addCategory(category);
+		int result = categoryJDBC.deleteCategory(Integer.parseInt(request.getParameter("id")));
 		if (result == 1) {
-			redirectAtt.addFlashAttribute("success", "Thêm mới thể loại thành công");
+			redirectAtt.addFlashAttribute("success", "Xóa thể loại thành công");
 		} else {
-			redirectAtt.addFlashAttribute("error", "Thêm mới thể loại thất bại");
+			redirectAtt.addFlashAttribute("error", "Xóa thể loại thất bại");
 		}
 		return "redirect:/Category";
 	}

@@ -28,7 +28,7 @@
 		<div>
 			<hr>
 		</div>
-		<form action="postEdit" method="post">
+		<form action="../postEdit" method="post">
 			<div class="form-group form-inline">
 				<input type="text" name="id" id="id" hidden="true"
 					value="${category.getId()}"> Thể loại: <input type="text"

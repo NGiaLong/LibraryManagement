@@ -16,7 +16,7 @@
 	</div>
 	<!--/.row-->
 	<div class="header">
-		<h1>DANH SÁCH THỂ LOẠI SÁCH</h1>
+		<h1>XÓA THỂ LOẠI SÁCH</h1>
 	</div>
 	<c:if test="${success != null }">
 		<div class="alert alert-success">${success }</div>
@@ -25,41 +25,23 @@
 		<div class="alert alert-danger">${error }</div>
 	</c:if>
 	<div class="content">
-		<div class="row">
-			<div class="col-lg-10"></div>
-			<div class="col-lg-2">
-				<a href="Category/add"><input
-					class="btn btn-primary btn-large btn-block" type="submit"
-					value="Tạo mới thể loại"></a>
-
-			</div>
+		<div>
+			<hr>
 		</div>
 		<div>
-			</br>
+			<h3>Bạn có muốn xóa thể loại này?</h3>
 		</div>
-		<table id="example" class="display">
-			<thead>
-				<th>STT</th>
-				<th>Thể loại sách</th>
-				<th></th>
-			</thead>
-			<tbody>
-				<%
-					int i = 1;
-				%>
-				<c:forEach var="listValue" items="${listCategory}">
-					<tr>
-						<td><%=i%></td>
-						<td>${listValue.getName()}</td>
-						<td><a href="Category/edit/${listValue.getId()}" class="btn btn-primary">Sửa </a>
-							<a href="Category/delete/${listValue.getId()}" class="btn btn-danger"> Xóa</a></td>
-					</tr>
-					<%
-						i++;
-					%>
-				</c:forEach>
-			</tbody>
-		</table>
+		<form action="../postDelete" method="post">
+			<div class="form-group form-inline">
+			<input type="text" hidden="true" name="id" id="id" value="${category.getId()}">
+				Thể loại: ${category.getName()}
+				<button type="submit" class="btn btn-delete">Xóa</button>
+			</div>
+		</form>
+		<div>
+			<a href="/LibraryManagement/Category/" class="btn btn-default">Quay
+				lại</a>
+		</div>
 	</div>
 </div>
 <jsp:include page="layouts/bot.jsp"></jsp:include>

@@ -1,8 +1,4 @@
 
-</div>
-<!-- /#wrapper -->
-
-
 </body>
 
 </html>

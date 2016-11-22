@@ -29,9 +29,8 @@
 		<div class="row">
 			<div class="col-lg-10"></div>
 			<div class="col-lg-2">
-				<a href="#"><input
-					class="btn btn-primary btn-large btn-block" type="submit"
-					value="Tạo nhân viên"></a>
+				<a href="#"><input class="btn btn-primary btn-large btn-block"
+					type="submit" value="Tạo độc giả"></a>
 
 			</div>
 		</div>
@@ -41,7 +40,7 @@
 		<table id="example" class="display">
 			<thead>
 				<th>STT</th>
-				<th>NVID</th>
+				<th>ĐGID</th>
 				<th>Tên</th>
 				<th>Ngày sinh</th>
 				<th>Giới tính</th>
@@ -62,18 +61,18 @@
 						<td>${listValue.getName()}</td>
 						<td>${listValue.getDateOfBirth() }</td>
 						<td><c:choose>
-							<c:when test="${listValue.isGender() }">
-								<c:out value="Nam"></c:out>
-							</c:when>
-							<c:otherwise>
-								<c:out value="Nữ"></c:out>
-							</c:otherwise>
-						</c:choose></td>
+								<c:when test="${listValue.isGender() }">
+									<c:out value="Nam"></c:out>
+								</c:when>
+								<c:otherwise>
+									<c:out value="Nữ"></c:out>
+								</c:otherwise>
+							</c:choose></td>
 						<td>${listValue.getEmail() }</td>
 						<td>${listValue.getAddress() }</td>
 						<td>${listValue.getPhone() }</td>
-						<td><a href="quanlynhansu/sua/${listValue.getId()}">Sửa </a></td>
-							<td><a href="quanlynhansu/xoa/${listValue.getId()}"> Xóa</a></td>
+						<td><a href="#">Sửa </a></td>
+						<td><a href="#">Ngưng hoạt động</a></td>
 					</tr>
 					<%
 						i++;

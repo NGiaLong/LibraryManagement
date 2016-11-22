@@ -77,7 +77,7 @@
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#"><svg class="glyph stroked male-user">
 									<use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>
-							<li><a href="/FFVStore/logout"><svg
+							<li><a href="/LibraryManagement/logout"><svg
 										class="glyph stroked cancel"> <use
 										xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
 						</ul></li>
@@ -103,10 +103,6 @@
 								xlink:href="#stroked-chevron-down"></use></svg></span> Quản lý nhân viên
 				</a>
 					<ul class="children collapse" id="sub-item-1">
-						<li><a class="" href="#"> <svg
-									class="glyph stroked chevron-right"> <use
-									xlink:href="#stroked-chevron-right"></use></svg> Tạo tài khoản
-						</a></li>
 						<li><a class="" href="/LibraryManagement/deactivated-staff-management"> <svg
 									class="glyph stroked chevron-right"> <use
 									xlink:href="#stroked-chevron-right"></use></svg> Ngừng hoạt động
@@ -118,10 +114,6 @@
 								xlink:href="#stroked-chevron-down"></use></svg></span> Quản lý độc giả
 				</a>
 					<ul class="children collapse" id="sub-item-2">
-						<li><a class="" href="/FFVStore/cua-hang/tao"> <svg
-									class="glyph stroked chevron-right"> <use
-									xlink:href="#stroked-chevron-right"></use></svg> Tạo độc giả
-						</a></li>
 						<li><a class="" href="/LibraryManagement/deactivated-student-management"> <svg
 									class="glyph stroked chevron-right"> <use
 									xlink:href="#stroked-chevron-right"></use></svg> Ngừng hoạt động

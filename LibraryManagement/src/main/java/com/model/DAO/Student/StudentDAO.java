@@ -21,5 +21,5 @@ public interface StudentDAO {
 	
 	public int resetPasswordById(int id);
 
-	public int editStudentById(int id);
+	public int editStudentById(int id, Student student);
 }

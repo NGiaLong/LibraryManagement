@@ -26,14 +26,17 @@ import com.model.DAO.Student.StudentJDBC;
 @Controller
 public class StudentController {
 	private ApplicationContext context;
+
 	@ModelAttribute("addStudentBean")
-	public AddStudentBean addStudentBean(){
+	public AddStudentBean addStudentBean() {
 		return new AddStudentBean();
 	}
+
 	@ModelAttribute("editStudentBean")
-	public EditStudentBean editStudentBean(){
+	public EditStudentBean editStudentBean() {
 		return new EditStudentBean();
 	}
+
 	@RequestMapping(value = "/student-management", method = RequestMethod.GET)
 	public String studentmanagement(ModelMap model, HttpServletRequest request) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
@@ -51,6 +54,7 @@ public class StudentController {
 		model.addAttribute("sList", sList);
 		return "deactivatedstudentmanagement";
 	}
+
 	@RequestMapping(value = "/deactivated-student-management/{id}", method = RequestMethod.GET)
 	public String deactivatedstudentprocess(ModelMap model, HttpServletRequest request, @PathVariable int id,
 			RedirectAttributes redirectAtt) {
@@ -64,6 +68,7 @@ public class StudentController {
 		}
 		return "redirect:/student-management";
 	}
+
 	@RequestMapping(value = "/reactive-student/{id}", method = RequestMethod.GET)
 	public String reactivestudent(ModelMap model, HttpServletRequest request, @PathVariable int id,
 			RedirectAttributes redirectAtt) {
@@ -77,6 +82,7 @@ public class StudentController {
 		}
 		return "redirect:/deactivated-student-management";
 	}
+
 	@RequestMapping(value = "/reset-student-password/{id}", method = RequestMethod.GET)
 	public String resetPassword(ModelMap model, HttpServletRequest request, @PathVariable int id,
 			RedirectAttributes redirectAtt) {
@@ -90,15 +96,28 @@ public class StudentController {
 		}
 		return "redirect:/student-management";
 	}
+
 	@RequestMapping(value = "/add-student", method = RequestMethod.GET)
 	public String addstudent(ModelMap model, HttpServletRequest request) {
 		return "addstudent";
 	}
+
 	@RequestMapping(value = "/add-student", method = RequestMethod.POST)
-	public String addstudentProcess(ModelMap model, HttpServletRequest request) {
+	public String addstudentProcess(@ModelAttribute("SpringWeb") AddStudentBean addStudentBean, ModelMap model,
+			HttpServletRequest request, RedirectAttributes redirectAtt) {
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		StudentJDBC studentJDBC = (StudentJDBC) context.getBean("studentJDBC");
+		int addStudent = studentJDBC.addNewStudent(
+				new Student(addStudentBean.getName(), addStudentBean.getDateOfBirth(), addStudentBean.isGender(),
+						addStudentBean.getEmail(), addStudentBean.getAddress(), addStudentBean.getPhone()));
+		if (addStudent == 1) {
+			redirectAtt.addFlashAttribute("success", "Tạo đọc viên thành công!");
+		} else {
+			redirectAtt.addFlashAttribute("error", "Tạo đọc viên thất bại!");
+		}
 		return "redirect:/student-management";
 	}
-	
+
 	@RequestMapping(value = "/edit-student/{id}", method = RequestMethod.GET)
 	public String editstudent(ModelMap model, HttpServletRequest request, @PathVariable int id) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
@@ -107,12 +126,17 @@ public class StudentController {
 		model.addAttribute("student", st);
 		return "editstudent";
 	}
+
 	@RequestMapping(value = "/edit-student/{id}", method = RequestMethod.POST)
-	public String editstudentProcess(ModelMap model, HttpServletRequest request, @PathVariable int id) {
+	public String editstudentProcess(@ModelAttribute("SpringWeb") EditStudentBean editStudentBean, ModelMap model, HttpServletRequest request, @PathVariable int id, RedirectAttributes redirectAtt) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		StudentJDBC studentJDBC = (StudentJDBC) context.getBean("studentJDBC");
-		Student st = studentJDBC.getStudentById(id);
-		model.addAttribute("student", st);
+		int editStudent = studentJDBC.editStudentById(id, new Student(editStudentBean.getName(), editStudentBean.getDateOfBirth(), editStudentBean.isGender(), editStudentBean.getEmail(), editStudentBean.getAddress(), editStudentBean.getPhone()));
+		if (editStudent == 1) {
+			redirectAtt.addFlashAttribute("success", "Sửa đọc viên thành công!");
+		} else {
+			redirectAtt.addFlashAttribute("error", "Sửa đọc viên thất bại!");
+		}
 		return "redirect:/student-management";
 	}
 }

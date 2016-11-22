@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.model.Student;
 
-public class StudentJDBC implements StudentDAO{
+public class StudentJDBC implements StudentDAO {
 	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplateObject;
 
@@ -16,23 +16,41 @@ public class StudentJDBC implements StudentDAO{
 		this.dataSource = dataSource;
 		this.jdbcTemplateObject = new JdbcTemplate(dataSource);
 	}
-	
-	public List<Student> getAll(){
-		String sql="select * from Students where status = '1'";
+
+	@Override
+	public List<Student> getAll() {
+		String sql = "select * from Students where status = '1'";
 		try {
-			List<Student> studentList =  jdbcTemplateObject.query(sql, new StudentMapper());
+			List<Student> studentList = jdbcTemplateObject.query(sql, new StudentMapper());
 			return studentList;
 		} catch (Exception e) {
 			return null;
 		}
 	}
-	public List<Student> getAll2(){
-		String sql="select * from Students where status = '0'";
+
+	@Override
+	public List<Student> getAll2() {
+		String sql = "select * from Students where status = '0'";
 		try {
-			List<Student> studentList =  jdbcTemplateObject.query(sql, new StudentMapper());
+			List<Student> studentList = jdbcTemplateObject.query(sql, new StudentMapper());
 			return studentList;
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	@Override
+	public int addNewStudent(Student student) {
+		return 1;
+	}
+
+	@Override
+	public int deleteStudentById(int id) {
+		return 1;
+	}
+
+	@Override
+	public int editStudentById(int id) {
+		return 1;
 	}
 }

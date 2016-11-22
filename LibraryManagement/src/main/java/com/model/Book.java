@@ -8,6 +8,7 @@ public class Book {
 	int edition;
 	String publisher;
 	int categoryId;
+	String categoryName;
 	boolean status;
 	public int getId() {
 		return id;
@@ -56,6 +57,12 @@ public class Book {
 	}
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 	
 }

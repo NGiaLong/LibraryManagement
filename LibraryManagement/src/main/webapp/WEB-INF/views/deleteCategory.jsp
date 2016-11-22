@@ -34,14 +34,11 @@
 		<form action="../postDelete" method="post">
 			<div class="form-group form-inline">
 			<input type="text" hidden="true" name="id" id="id" value="${category.getId()}">
-				Thể loại: ${category.getName()}
-				<button type="submit" class="btn btn-delete">Xóa</button>
+				<h4>Thể loại: ${category.getName()}</h4>				
 			</div>
-		</form>
-		<div>
-			<a href="/LibraryManagement/Category/" class="btn btn-default">Quay
-				lại</a>
-		</div>
+			<button type="submit" class="btn btn-danger">Xóa</button>
+			<a href="/LibraryManagement/Category/" class="btn btn-default">Quay lại</a>
+		</form>		
 	</div>
 </div>
 <jsp:include page="layouts/bot.jsp"></jsp:include>

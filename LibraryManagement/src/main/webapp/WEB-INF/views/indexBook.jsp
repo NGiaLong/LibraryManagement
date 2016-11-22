@@ -16,7 +16,7 @@
 	</div>
 	<!--/.row-->
 	<div class="header">
-		<h1>DANH SÁCH THỂ LOẠI SÁCH</h1>
+		<h1>DANH SÁCH TÀI LIỆU</h1>
 	</div>
 	<c:if test="${success != null }">
 		<div class="alert alert-success">${success }</div>
@@ -27,27 +27,40 @@
 	<div class="content">		
 			<a href="Category/add"><input
 				class="btn btn-primary" type="submit"
-				value="Tạo mới thể loại"></a>		
+				value="Tạo mới sách"></a>		
 		<div>
 			</br>
 		</div>
 		<table id="example" class="display">
 			<thead>
 				<th>STT</th>
-				<th>Thể loại sách</th>
+				<th>Mã sách</th>
+				<th>Tên sách</th>
+				<th>Tác giả</th>
+				<th>Phiên bản</th>
+				<th>Nhà sản xuất</th>
+				<th>Thể loại</th>
+				<th>Tình trạng</th>
 				<th></th>
 			</thead>
 			<tbody>
 				<%
 					int i = 1;
 				%>
-				<c:forEach var="listValue" items="${listCategory}">
+				<c:forEach var="listValue" items="${listBook}">
 					<tr>
 						<td><%=i%></td>
-						<td>${listValue.getName()}</td>
-						<td><a href="Category/edit/${listValue.getId()}"
+						<td>${listValue.getId()}</td>
+						<td>${listValue.getTitle()}</td>
+						<td>${listValue.getAuthor()}</td>
+						<td>${listValue.getEdition()}</td>
+						<td>${listValue.getPublisher()}</td>
+						<td>${listValue.getCategoryName()}</td>
+						
+						<td>${listValue.isStatus()}</td>						
+						<td><a href="Book/edit/${listValue.getId()}"
 							class="btn btn-primary">Sửa </a> <a
-							href="Category/delete/${listValue.getId()}"
+							href="Book/delete/${listValue.getId()}"
 							class="btn btn-danger"> Xóa</a></td>
 					</tr>
 					<%

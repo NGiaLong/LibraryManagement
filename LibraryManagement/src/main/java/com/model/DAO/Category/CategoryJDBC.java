@@ -23,8 +23,7 @@ public class CategoryJDBC implements CategoryDAO {
 			List<Category> listCategory = jdbcTemplateObject.query(sql, new CategoryMapper());
 			return listCategory;
 		} catch (NullPointerException ex) {
-			System.out.println(ex.getMessage());
-			System.out.println("loi o day");
+			System.out.println(ex.getMessage());			
 			return null;
 		}
 	}

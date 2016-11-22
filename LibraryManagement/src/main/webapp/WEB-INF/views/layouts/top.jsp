@@ -98,17 +98,17 @@
 		<ul class="nav menu">
 			<li><a href="#"><svg class="glyph stroked dashboard-dial">
 					<use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
-			<li class="parent "><a href="/FFVStore/quanlynhansu"> <span
+			<li class="parent "><a href="/LibaryManagement/quanlynhansu"> <span
 					data-toggle="collapse" href="#sub-item-1"><svg
 							class="glyph stroked chevron-down"> <use
 							xlink:href="#stroked-chevron-down"></use></svg></span> Quản lý nhân viên
 			</a>
 				<ul class="children collapse" id="sub-item-1">
-					<li><a class="" href="/FFVStore/quanlynhansu/taonhanvien"> <svg
+					<li><a class="" href="#"> <svg
 								class="glyph stroked chevron-right"> <use
 								xlink:href="#stroked-chevron-right"></use></svg> Tạo tài khoản
 					</a></li>
-					<li><a class="" href="/FFVStore/quanlynhansu""> <svg
+					<li><a class="" href="#"> <svg
 								class="glyph stroked chevron-right"> <use
 								xlink:href="#stroked-chevron-right"></use></svg> Ngừng hoạt động
 					</a></li>
@@ -123,7 +123,7 @@
 								class="glyph stroked chevron-right"> <use
 								xlink:href="#stroked-chevron-right"></use></svg> Tạo độc giả
 					</a></li>
-					<li><a class="" href="/FFVStore/cua-hang"> <svg
+					<li><a class="" href="#"> <svg
 								class="glyph stroked chevron-right"> <use
 								xlink:href="#stroked-chevron-right"></use></svg> Ngừng hoạt động
 					</a></li>

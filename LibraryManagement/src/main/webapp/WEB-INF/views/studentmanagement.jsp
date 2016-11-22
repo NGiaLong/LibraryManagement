@@ -17,7 +17,7 @@
 	</div>
 	<!--/.row-->
 	<div class="header">
-		<h1>Quản lý nhân sự</h1>
+		<h1>Quản lý độc giả</h1>
 	</div>
 	<c:if test="${success != null }">
 		<div class="alert alert-success">${success }</div>

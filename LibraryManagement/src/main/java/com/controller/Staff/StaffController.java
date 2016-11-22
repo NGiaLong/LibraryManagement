@@ -18,12 +18,19 @@ import com.model.DAO.Staff.StaffJDBC;
 public class StaffController {
 	private ApplicationContext context;
 	@RequestMapping(value = "/staff-management", method = RequestMethod.GET)
-	public String quanLyNhanVien(ModelMap model, HttpServletRequest request) {
+	public String staffmanagement(ModelMap model, HttpServletRequest request) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		StaffJDBC staffJDBC = (StaffJDBC) context.getBean("staffJDBC");
 		List<Staff> sList = staffJDBC.getAll();
 		model.addAttribute("sList",sList);
 		return "staffmanagement";
-
+	}
+	@RequestMapping(value = "/deactivated-staff-management", method = RequestMethod.GET)
+	public String deactivatedstaff(ModelMap model, HttpServletRequest request) {
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		StaffJDBC staffJDBC = (StaffJDBC) context.getBean("staffJDBC");
+		List<Staff> sList = staffJDBC.getAll2();
+		model.addAttribute("sList",sList);
+		return "deactivatedstaffmanagement";
 	}
 }

@@ -107,7 +107,7 @@
 									class="glyph stroked chevron-right"> <use
 									xlink:href="#stroked-chevron-right"></use></svg> Tạo tài khoản
 						</a></li>
-						<li><a class="" href="#"> <svg
+						<li><a class="" href="/LibraryManagement/deactivated-staff-management"> <svg
 									class="glyph stroked chevron-right"> <use
 									xlink:href="#stroked-chevron-right"></use></svg> Ngừng hoạt động
 						</a></li>

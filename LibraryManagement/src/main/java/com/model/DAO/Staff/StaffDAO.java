@@ -8,5 +8,7 @@ public interface StaffDAO {
 	
 	public List<Staff> getAll();
 	
+	public List<Staff> getAll2();
+	
 	
 }

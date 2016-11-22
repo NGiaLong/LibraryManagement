@@ -26,4 +26,13 @@ public class StaffJDBC implements StaffDAO{
 			return null;
 		}
 	}
+	public List<Staff> getAll2(){
+		String sql="select * from Staffs where status = '0'";
+		try {
+			List<Staff> staffList =  jdbcTemplateObject.query(sql, new StaffMapper());
+			return staffList;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

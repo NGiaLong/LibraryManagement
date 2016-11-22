@@ -107,12 +107,12 @@
 									class="glyph stroked chevron-right"> <use
 									xlink:href="#stroked-chevron-right"></use></svg> Tạo tài khoản
 						</a></li>
-						<li><a class="" href="#"> <svg
+						<li><a class="" href="/LibraryManagement/deactivated-staff-management"> <svg
 									class="glyph stroked chevron-right"> <use
 									xlink:href="#stroked-chevron-right"></use></svg> Ngừng hoạt động
 						</a></li>
 					</ul></li>
-				<li class="parent "><a href="#"> <span
+				<li class="parent "><a href="/LibraryManagement/student-management"> <span
 						data-toggle="collapse" href="#sub-item-2"><svg
 								class="glyph stroked chevron-down"> <use
 								xlink:href="#stroked-chevron-down"></use></svg></span> Quản lý độc giả
@@ -122,7 +122,7 @@
 									class="glyph stroked chevron-right"> <use
 									xlink:href="#stroked-chevron-right"></use></svg> Tạo độc giả
 						</a></li>
-						<li><a class="" href="#"> <svg
+						<li><a class="" href="/LibraryManagement/deactivated-student-management"> <svg
 									class="glyph stroked chevron-right"> <use
 									xlink:href="#stroked-chevron-right"></use></svg> Ngừng hoạt động
 						</a></li>

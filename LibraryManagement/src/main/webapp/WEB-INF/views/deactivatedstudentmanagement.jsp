@@ -1,7 +1,7 @@
 <%@page import="org.springframework.ui.ModelMap"%>
 <%@page import="org.springframework.ui.Model"%>
 <%@page import="java.util.List"%>
-<%@page import="com.model.Staff"%>
+<%@page import="com.model.Student"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -17,7 +17,7 @@
 	</div>
 	<!--/.row-->
 	<div class="header">
-		<h1>Quản lý nhân sự</h1>
+		<h1>NGƯNG HOẠT ĐỘNG</h1>
 	</div>
 	<c:if test="${success != null }">
 		<div class="alert alert-success">${success }</div>
@@ -26,28 +26,14 @@
 		<div class="alert alert-danger">${error }</div>
 	</c:if>
 	<div class="content">
-		<div class="row">
-			<div class="col-lg-10"></div>
-			<div class="col-lg-2">
-				<a href="#"><input class="btn btn-primary btn-large btn-block"
-					type="submit" value="Tạo nhân viên"></a>
-
-			</div>
-		</div>
 		<div>
 			</br>
 		</div>
 		<table id="example" class="display">
 			<thead>
 				<th>STT</th>
-				<th>NVID</th>
+				<th>ĐGID</th>
 				<th>Tên</th>
-				<th>Ngày sinh</th>
-				<th>Giới tính</th>
-				<th>Email</th>
-				<th>Địa chỉ</th>
-				<th>Số điện thoại</th>
-				<th></th>
 				<th></th>
 			</thead>
 			<tbody>
@@ -59,20 +45,7 @@
 						<td><%=i%></td>
 						<td>${listValue.getId()}</td>
 						<td>${listValue.getName()}</td>
-						<td>${listValue.getDateOfBirth() }</td>
-						<td><c:choose>
-								<c:when test="${listValue.isGender() }">
-									<c:out value="Nam"></c:out>
-								</c:when>
-								<c:otherwise>
-									<c:out value="Nữ"></c:out>
-								</c:otherwise>
-							</c:choose></td>
-						<td>${listValue.getEmail() }</td>
-						<td>${listValue.getAddress() }</td>
-						<td>${listValue.getPhone() }</td>
-						<td><a href="#">Sửa </a></td>
-						<td><a href="#">Ngưng hoạt động</a></td>
+							<td><a href="#"> Tái hoạt động</a></td>
 					</tr>
 					<%
 						i++;

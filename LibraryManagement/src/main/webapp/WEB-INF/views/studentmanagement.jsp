@@ -17,7 +17,7 @@
 	</div>
 	<!--/.row-->
 	<div class="header">
-		<h1>Quản lý nhân sự</h1>
+		<h1>Quản lý độc giả</h1>
 	</div>
 	<c:if test="${success != null }">
 		<div class="alert alert-success">${success }</div>
@@ -30,7 +30,7 @@
 			<div class="col-lg-10"></div>
 			<div class="col-lg-2">
 				<a href="#"><input class="btn btn-primary btn-large btn-block"
-					type="submit" value="Tạo nhân viên"></a>
+					type="submit" value="Tạo độc giả"></a>
 
 			</div>
 		</div>
@@ -40,7 +40,7 @@
 		<table id="example" class="display">
 			<thead>
 				<th>STT</th>
-				<th>NVID</th>
+				<th>ĐGID</th>
 				<th>Tên</th>
 				<th>Ngày sinh</th>
 				<th>Giới tính</th>

@@ -31,20 +31,20 @@ public class CategoryJDBC implements CategoryDAO {
 
 	@Override
 	public int addCategory(Category category) {
-		String SQL = "update Categories set Categories.Name = ? where Categories.Id =? ";
-		return jdbcTemplateObject.update(SQL, new Object[] { category.getName(), category.getId()});		
+		String SQL = "INSERT INTO Categories VALUES (?)";
+		return jdbcTemplateObject.update(SQL, new Object[] { category.getName()});	
 	}
 
 	@Override
 	public int updateCategory(Category category) {
-		// TODO Auto-generated method stub
-		return 0;
+		String SQL = "update Categories set Categories.Name = ? where Categories.Id =? ";
+		return jdbcTemplateObject.update(SQL, new Object[] { category.getName(), category.getId()});	
 	}
 
 	@Override
 	public int deleteCategory(int categoryId) {
-		// TODO Auto-generated method stub
-		return 0;
+		String SQL = "delete from Categories where Id = ?";
+		return jdbcTemplateObject.update(SQL, new Object[] {categoryId});
 	}
 
 }

@@ -13,6 +13,5 @@ public class CategoryMapper implements RowMapper<Category>{
 		category.setId(rs.getInt(1));
 		category.setName(rs.getString(2));		
 		return category;
-		
 	}
 }

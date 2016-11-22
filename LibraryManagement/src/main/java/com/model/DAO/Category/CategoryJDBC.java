@@ -5,7 +5,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-
 import com.model.Category;
 
 public class CategoryJDBC implements CategoryDAO {
@@ -47,5 +46,14 @@ public class CategoryJDBC implements CategoryDAO {
 		String SQL = "delete from Categories where Id = ?";
 		return jdbcTemplateObject.update(SQL, new Object[] {categoryId});
 	}
+
+	@Override
+	public Category getOne(int categoryId) {
+		String sql = "SELECT * FROM Categories WHERE Id = ?";
+		Category ct= (Category) jdbcTemplateObject.queryForObject(sql, new Object[]{categoryId} ,new CategoryMapper());
+		return ct;
+	}
+
+	
 
 }

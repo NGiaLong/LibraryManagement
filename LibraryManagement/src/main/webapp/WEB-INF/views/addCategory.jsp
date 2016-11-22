@@ -16,7 +16,7 @@
 	</div>
 	<!--/.row-->
 	<div class="header">
-		<h1>DANH SÁCH THỂ LOẠI SÁCH</h1>
+		<h1>THÊM MỚI THỂ LOẠI SÁCH</h1>
 	</div>
 	<c:if test="${success != null }">
 		<div class="alert alert-success">${success }</div>
@@ -25,41 +25,17 @@
 		<div class="alert alert-danger">${error }</div>
 	</c:if>
 	<div class="content">
-		<div class="row">
-			<div class="col-lg-10"></div>
-			<div class="col-lg-2">
-				<a href="Category/add"><input
-					class="btn btn-primary btn-large btn-block" type="submit"
-					value="Tạo mới thể loại"></a>
+		<div>
+			<hr>
+		</div>
+		<form action="postAdd" method="post">
+			<div class="form-group col-md-8 form-inline">
+				Thể loại: <input type="text" id="name" name="name" required
+					class="form-control">
+				<button type="submit" class="btn btn-primary">Tạo</button>
 
 			</div>
-		</div>
-		<div>
-			</br>
-		</div>
-		<table id="example" class="display">
-			<thead>
-				<th>STT</th>
-				<th>Thể loại sách</th>
-				<th></th>
-			</thead>
-			<tbody>
-				<%
-					int i = 1;
-				%>
-				<c:forEach var="listValue" items="${listCategory}">
-					<tr>
-						<td><%=i%></td>
-						<td>${listValue.getName()}</td>
-						<td><a href="Category/edit/${listValue.getId()}" class="btn btn-primary">Sửa </a>
-							<a href="quanlynhansu/xoa/${listValue.getId()}" class="btn btn-danger"> Xóa</a></td>
-					</tr>
-					<%
-						i++;
-					%>
-				</c:forEach>
-			</tbody>
-		</table>
+		</form>
 	</div>
 </div>
 <jsp:include page="layouts/bot.jsp"></jsp:include>

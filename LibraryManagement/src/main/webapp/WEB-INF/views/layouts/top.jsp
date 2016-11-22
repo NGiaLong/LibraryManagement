@@ -146,6 +146,21 @@
 									xlink:href="#stroked-chevron-right"></use></svg> Sách còn trong kho
 						</a></li>
 					</ul></li>
+				<li class="parent "><a href="/LibraryManagement/Category"> <span
+						data-toggle="collapse" href="#sub-item-3"><svg
+								class="glyph stroked chevron-down"> <use
+								xlink:href="#stroked-chevron-down"></use></svg></span> Quản lý thể loại sách
+				</a>
+					<ul class="children collapse" id="sub-item-3">
+						<li><a class="" href="/LibraryManagement/Category/add"> <svg
+									class="glyph stroked chevron-right"> <use
+									xlink:href="#stroked-chevron-right"></use></svg> Thêm thể loại
+						</a></li>						
+						<li><a class="" href="/LibraryManagement/Category"> <svg
+									class="glyph stroked chevron-right"> <use
+									xlink:href="#stroked-chevron-right"></use></svg> Sách còn trong kho
+						</a></li>
+					</ul></li>
 				<li class="parent "><a href="#"> <span
 						data-toggle="collapse" href="#sub-item-4"><svg
 								class="glyph stroked chevron-down"> <use

@@ -77,7 +77,7 @@ public class StaffController {
 		return "redirect:/deactivated-staff-management";
 	}
 	
-	@RequestMapping(value = "/reset-password/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/reset-staff-password/{id}", method = RequestMethod.GET)
 	public String resetPassword(ModelMap model, HttpServletRequest request, @PathVariable int id,
 			RedirectAttributes redirectAtt) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");

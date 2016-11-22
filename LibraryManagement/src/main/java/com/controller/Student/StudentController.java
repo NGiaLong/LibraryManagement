@@ -75,7 +75,7 @@ public class StudentController {
 		}
 		return "redirect:/deactivated-student-management";
 	}
-	@RequestMapping(value = "/reset-password/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/reset-student-password/{id}", method = RequestMethod.GET)
 	public String resetPassword(ModelMap model, HttpServletRequest request, @PathVariable int id,
 			RedirectAttributes redirectAtt) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");

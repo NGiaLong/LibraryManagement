@@ -51,7 +51,7 @@ public class BookJDBC implements BookDAO {
 
 	@Override
 	public int addBook(Book book) {
-		String SQL = "INSERT INTO Categories VALUES (?,?,?,?,?,?,?)";
+		String SQL = "INSERT INTO Books  VALUES (?,?,?,?,?,?,?)";
 		return jdbcTemplateObject.update(SQL, new Object[] { book.getTitle(), book.getDescription(), book.getAuthor(),
 				book.getEdition(), book.getPublisher(), book.getCategoryId(), book.isStatus() });
 	}

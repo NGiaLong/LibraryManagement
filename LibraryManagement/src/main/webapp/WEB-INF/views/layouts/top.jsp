@@ -133,7 +133,7 @@
 								xlink:href="#stroked-chevron-down"></use></svg></span> Quản lý sách
 				</a>
 					<ul class="children collapse" id="sub-item-3">
-						<li><a class="" href="/FFVStore/taomonan"> <svg
+						<li><a class="" href="/LibraryManagement/Book/add"> <svg
 									class="glyph stroked chevron-right"> <use
 									xlink:href="#stroked-chevron-right"></use></svg> Thêm sách
 						</a></li>

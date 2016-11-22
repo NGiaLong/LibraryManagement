@@ -96,7 +96,7 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-8"></div>
-					<a href="/LibraryManagement/staff-management"
+					<a href="/LibraryManagement/Book"
 						class="btn btn-default">Quay lại</a>
 					<form:button type="submit" class="btn btn-primary">Thêm</form:button>
 				</div>

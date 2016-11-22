@@ -25,7 +25,7 @@
 		<div class="alert alert-danger">${error }</div>
 	</c:if>
 	<div class="content">
-		<a href="Category/add"><input class="btn btn-primary"
+		<a href="Book/add"><input class="btn btn-primary"
 			type="submit" value="Tạo mới sách"></a>
 		<div>
 			</br>

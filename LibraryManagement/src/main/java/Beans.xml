@@ -29,7 +29,7 @@
 	<bean id="categoryJDBC" class="com.model.DAO.Category.CategoryJDBC">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	<!-- Definition for CategoryJDBCTemplate bean -->
+	<!-- Definition for BookJDBCTemplate bean -->
 	<bean id="bookJDBC" class="com.model.DAO.Book.BookJDBC">
 		<property name="dataSource" ref="dataSource" />
 	</bean>

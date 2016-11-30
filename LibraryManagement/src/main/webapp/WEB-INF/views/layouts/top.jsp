@@ -73,7 +73,7 @@
 					<li class="dropdown pull-right"><a href="#"
 						class="dropdown-toggle" data-toggle="dropdown"><svg
 								class="glyph stroked male-user"> <use
-								xlink:href="#stroked-male-user"></use></svg> <span class="caret"></span></a>
+								xlink:href="#stroked-male-user"></use></svg>${staff.getName() } <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#"><svg class="glyph stroked male-user">
 									<use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>

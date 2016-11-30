@@ -35,6 +35,7 @@
 				<th>NVID</th>
 				<th>Tên</th>
 				<th></th>
+				<th></th>
 			</thead>
 			<tbody>
 				<%
@@ -45,7 +46,8 @@
 						<td><%=i%></td>
 						<td>${listValue.getId()}</td>
 						<td>${listValue.getName()}</td>
-							<td><a href="/LibraryManagement/reactive-staff/${listValue.getId()}"> Tái hoạt động</a></td>
+						<td><a href="/LibraryManagement/reactive-staff/${listValue.getId()}" class="btn btn-primary btn-block"> Tái hoạt động</a></td>
+						<td><a href="" class="btn btn-danger btn-block">Xóa</a></td>
 					</tr>
 					<%
 						i++;

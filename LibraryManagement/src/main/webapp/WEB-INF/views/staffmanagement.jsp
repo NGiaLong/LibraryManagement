@@ -29,57 +29,64 @@
 		<div class="row">
 			<div class="col-lg-10"></div>
 			<div class="col-lg-2">
-				<a href="/LibraryManagement/add-staff"><input class="btn btn-primary btn-large btn-block"
-					type="submit" value="Tạo nhân viên"></a>
+				<a href="/LibraryManagement/add-staff"><input
+					class="btn btn-primary btn-large btn-block" type="submit"
+					value="Tạo nhân viên"></a>
 
 			</div>
 		</div>
 		<div>
 			</br>
 		</div>
-		<table id="example" class="display">
-			<thead>
-				<th>STT</th>
-				<th>NVID</th>
-				<th>Tên</th>
-				<th>Ngày sinh</th>
-				<th>Giới tính</th>
-				<th>Email</th>
-				<th>Địa chỉ</th>
-				<th>Số điện thoại</th>
-				<th></th>
-				<th></th>
-			</thead>
-			<tbody>
-				<%
-					int i = 1;
-				%>
-				<c:forEach var="listValue" items="${sList}">
-					<tr>
-						<td><%=i%></td>
-						<td>${listValue.getId()}</td>
-						<td>${listValue.getName()}</td>
-						<td>${listValue.getDateOfBirth() }</td>
-						<td><c:choose>
-								<c:when test="${listValue.isGender() }">
-									<c:out value="Nam"></c:out>
-								</c:when>
-								<c:otherwise>
-									<c:out value="Nữ"></c:out>
-								</c:otherwise>
-							</c:choose></td>
-						<td>${listValue.getEmail() }</td>
-						<td>${listValue.getAddress() }</td>
-						<td>${listValue.getPhone() }</td>
-						<td><a href="/LibraryManagement/edit-staff/${listValue.getId()}"class ="btn btn-primary btn-block">Sửa </a></td>
-						<td><a href="/LibraryManagement/deactivated-staff-management/${listValue.getId()}"class ="btn btn-warning btn-block">Ngưng hoạt động</a></td>
-					</tr>
+		<div >
+			<table id="example" class="display">
+				<thead>
+					<th>STT</th>
+					<th>NVID</th>
+					<th>Tên</th>
+					<th>Ngày sinh</th>
+					<th>Giới tính</th>
+					<th>Email</th>
+					<th>Địa chỉ</th>
+					<th>Số điện thoại</th>
+					<th></th>
+					<th></th>
+				</thead>
+				<tbody>
 					<%
-						i++;
+						int i = 1;
 					%>
-				</c:forEach>
-			</tbody>
-		</table>
+					<c:forEach var="listValue" items="${sList}">
+						<tr>
+							<td><%=i%></td>
+							<td>${listValue.getId()}</td>
+							<td>${listValue.getName()}</td>
+							<td>${listValue.getDateOfBirth() }</td>
+							<td><c:choose>
+									<c:when test="${listValue.isGender() }">
+										<c:out value="Nam"></c:out>
+									</c:when>
+									<c:otherwise>
+										<c:out value="Nữ"></c:out>
+									</c:otherwise>
+								</c:choose></td>
+							<td>${listValue.getEmail() }</td>
+							<td>${listValue.getAddress() }</td>
+							<td>${listValue.getPhone() }</td>
+							<td><a
+								href="/LibraryManagement/edit-staff/${listValue.getId()}"
+								class="btn btn-primary btn-block">Sửa </a></td>
+							<td><a
+								href="/LibraryManagement/deactivated-staff-management/${listValue.getId()}"
+								class="btn btn-warning btn-block">Ngưng hoạt động</a></td>
+						</tr>
+						<%
+							i++;
+						%>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>
 <jsp:include page="layouts/bot.jsp"></jsp:include>

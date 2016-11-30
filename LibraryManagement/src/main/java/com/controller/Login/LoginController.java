@@ -24,7 +24,7 @@ public class LoginController {
 	}
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginView(ModelMap model, HttpServletRequest request) {
-		Staff staff = (Staff) request.getSession().getAttribute("staff");
+		Staff staff = (Staff) request.getSession().getAttribute("staffSession");
 		if (staff != null) {
 			return "redirect:/index";
 		}
@@ -47,7 +47,8 @@ public class LoginController {
 				model.addAttribute("error", "Tài khoản này đang bị khóa");
 				return "login";
 			} else{
-				request.getSession().setAttribute("staff", staff);
+				request.getSession().setAttribute("staffSession", staff);
+				request.getSession().setAttribute("roleSession", 1);
 				redirectAtt.addFlashAttribute("success", "Đăng nhập thành công!");
 				return "redirect:/index";
 			}

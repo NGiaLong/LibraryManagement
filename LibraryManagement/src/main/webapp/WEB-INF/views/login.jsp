@@ -16,7 +16,9 @@
 <title>Login</title>
 </head>
 <body>
-	<div class="message">${message }</div>
+	<c:if test="${error != null }">
+		<div class="alert alert-danger" align="center"><kbd>${error }</kbd></div>
+	</c:if>
 	<div id="login" class="container">
 		<div class="row-fluid">
 			<div class="span12">

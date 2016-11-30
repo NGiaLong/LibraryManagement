@@ -59,6 +59,16 @@
 
 
 <body>
+	<%
+		if ((null == session.getAttribute("staffSession")) | ("".equals(session.getAttribute("roleSession")))) {
+	%>
+	<script type="text/javascript">
+		window.location.href = "/LibraryManagement/login";
+	</script>
+	<%
+		return;
+		}
+	%>
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -73,7 +83,7 @@
 					<li class="dropdown pull-right"><a href="#"
 						class="dropdown-toggle" data-toggle="dropdown"><svg
 								class="glyph stroked male-user"> <use
-								xlink:href="#stroked-male-user"></use></svg>${staff.getName() } <span class="caret"></span></a>
+								xlink:href="#stroked-male-user"></use></svg>${staffSession.getName() } <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#"><svg class="glyph stroked male-user">
 									<use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>
@@ -88,14 +98,7 @@
 		<!-- /.container-fluid --> </nav>
 
 		<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-			<form role="search">
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Search">
-				</div>
-			</form>
 			<ul class="nav menu">
-				<li><a href="#"><svg class="glyph stroked dashboard-dial">
-						<use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
 				<li class="parent "><a
 					href="/LibraryManagement/staff-management"> <span
 						data-toggle="collapse" href="#sub-item-1"><svg

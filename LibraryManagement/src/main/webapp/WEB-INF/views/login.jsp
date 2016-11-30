@@ -31,9 +31,8 @@
 							<div class="input-prepend">
 								<fieldset>
 									<span class="add-on"><i class="icon-user"></i></span>
-									<form:input path="id" required="required"
-										placeholder="Tên đăng nhập" maxlength="255" type="text"
-										id="UserMaNhanVien" />
+									<form:input path="email" required="required" type="email"
+										placeholder="Email" maxlength="255"  />
 								</fieldset>
 
 							</div>
@@ -66,6 +65,5 @@
 		<!--/.row-fluid-->
 	</div>
 	<!--/.container-->
-	</div>
 </body>
 </html>

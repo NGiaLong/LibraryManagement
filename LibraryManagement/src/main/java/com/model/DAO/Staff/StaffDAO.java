@@ -13,6 +13,8 @@ public interface StaffDAO {
 	public int addNewStaff(Staff staff);
 
 	public Staff getStaffById(int id);
+	
+	public Staff getStaffByEmail(String email);
 
 	public int deactivateStaffById(int id);
 

@@ -80,7 +80,11 @@ public class StudentJDBC implements StudentDAO {
 	@Override
 	public int deleteStudentById(int id) {
 		String sql = "delete from Students where Id = ?";
-		return jdbcTemplateObject.update(sql, new Object[]{id});
+		try {
+			return jdbcTemplateObject.update(sql, new Object[]{id});
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 
 	@Override

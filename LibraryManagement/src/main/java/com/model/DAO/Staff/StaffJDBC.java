@@ -80,6 +80,13 @@ public class StaffJDBC implements StaffDAO {
 		Staff staff = (Staff) jdbcTemplateObject.queryForObject(sql, new StaffMapper());
 		return staff;
 	}
+	
+	@Override
+	public Staff getStaffByEmail (String email) {
+		String sql = "select * from Staffs where Email = '" + email + "'";
+		Staff staff = (Staff) jdbcTemplateObject.queryForObject(sql, new StaffMapper());
+		return staff;
+	}
 
 	@Override
 	public int resetPasswordById(int id) {

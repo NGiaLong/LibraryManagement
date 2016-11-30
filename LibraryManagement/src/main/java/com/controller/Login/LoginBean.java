@@ -1,13 +1,14 @@
 package com.controller.Login;
 
 public class LoginBean {
-	private String id;
+	private String email;
 	private String password;
-	public String getId() {
-		return id;
+	
+	public final String getEmail() {
+		return email;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public final void setEmail(String email) {
+		this.email = email;
 	}
 	public String getPassword() {
 		return password;
@@ -15,9 +16,9 @@ public class LoginBean {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public LoginBean(String id, String password) {
+	public LoginBean(String email, String password) {
 		super();
-		this.id = id;
+		this.email = email;
 		this.password = password;
 	}
 	public LoginBean() {

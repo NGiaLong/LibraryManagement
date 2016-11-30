@@ -34,7 +34,7 @@
 						<div class="input-group date col-sm-8">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-calendar"></i></span>
-							<form:input path="dateOfBirth" type="date" required class="form-control" 
+							<form:input path="dateOfBirth" type="date"  class="form-control" 
 								id="inputDate" name="inputDate" placeholder="Ngày sinh" />
 						</div>
 					</div>
@@ -53,7 +53,7 @@
 						<div class="input-group col-sm-8">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-envelope"></i></span>
-							<form:input path="email" type="email" required class="form-control"
+							<form:input path="email" type="email" class="form-control"
 								id="inputPhoneNumber" name="inputPhoneNumber"
 								placeholder="Email" />
 						</div>
@@ -65,7 +65,7 @@
 						<div class="input-group col-sm-8">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-phone"></i></span>
-							<form:input path="phone" type="number" required class="form-control"
+							<form:input path="phone" type="number"  class="form-control"
 								id="inputPhoneNumber" name="inputPhoneNumber"
 								placeholder="Số điện thoại" />
 						</div>
@@ -75,7 +75,7 @@
 						<div class="input-group col-sm-8">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-home"></i></span>
-							<form:input path="address" type="text" required class="form-control"
+							<form:input path="address" type="text" class="form-control"
 								id="inputAdress" name="inputAdress" placeholder="Địa chỉ" />
 						</div>
 					</div>

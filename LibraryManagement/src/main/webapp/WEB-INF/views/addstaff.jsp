@@ -25,7 +25,7 @@
 						<div class="input-group col-sm-8">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span>
-							<form:input path="name" type="text" class="form-control"
+							<form:input path="name" type="text" class="form-control" 
 								id="inputPhone" name="inputPhone" placeholder="Tên nhân viên" />
 						</div>
 					</div>
@@ -34,7 +34,7 @@
 						<div class="input-group date col-sm-8">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-calendar"></i></span>
-							<form:input path="dateOfBirth" type="date" class="form-control"
+							<form:input path="dateOfBirth" type="date" required class="form-control" 
 								id="inputDate" name="inputDate" placeholder="Ngày sinh" />
 						</div>
 					</div>
@@ -44,7 +44,7 @@
 						<label class="control-label col-sm-4 ">Giới tính:</label>
 						<div class="radio-inline col-sm-8">
 							<label class="col-sm-4"><form:radiobutton path="gender"
-									value="false" class="radio" />Nữ</label> <label class="col-sm-4"><form:radiobutton
+									value="false" class="radio"/>Nữ</label> <label class="col-sm-4"><form:radiobutton
 									path="gender" value="true" class="radio" />Nam</label>
 						</div>
 					</div>
@@ -53,7 +53,7 @@
 						<div class="input-group col-sm-8">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-envelope"></i></span>
-							<form:input path="email" type="email" class="form-control"
+							<form:input path="email" type="email" required class="form-control"
 								id="inputPhoneNumber" name="inputPhoneNumber"
 								placeholder="Email" />
 						</div>
@@ -65,7 +65,7 @@
 						<div class="input-group col-sm-8">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-phone"></i></span>
-							<form:input path="phone" type="number" class="form-control"
+							<form:input path="phone" type="number" required class="form-control"
 								id="inputPhoneNumber" name="inputPhoneNumber"
 								placeholder="Số điện thoại" />
 						</div>
@@ -75,7 +75,7 @@
 						<div class="input-group col-sm-8">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-home"></i></span>
-							<form:input path="address" type="text" class="form-control"
+							<form:input path="address" type="text" required class="form-control"
 								id="inputAdress" name="inputAdress" placeholder="Địa chỉ" />
 						</div>
 					</div>

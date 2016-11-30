@@ -24,10 +24,9 @@
 	<c:if test="${error != null }">
 		<div class="alert alert-danger">${error }</div>
 	</c:if>
-	<div class="content">		
-			<a href="Category/add"><input
-				class="btn btn-primary" type="submit"
-				value="Tạo mới thể loại"></a>		
+	<div class="content">
+		<a href="Category/add"><input class="btn btn-primary"
+			type="submit" value="Tạo mới thể loại"></a>
 		<div>
 			</br>
 		</div>
@@ -35,6 +34,7 @@
 			<thead>
 				<th>STT</th>
 				<th>Thể loại sách</th>
+				<th></th>
 				<th></th>
 			</thead>
 			<tbody>
@@ -46,9 +46,9 @@
 						<td><%=i%></td>
 						<td>${listValue.getName()}</td>
 						<td><a href="Category/edit/${listValue.getId()}"
-							class="btn btn-primary">Sửa </a> <a
-							href="Category/delete/${listValue.getId()}"
-							class="btn btn-danger"> Xóa</a></td>
+							class="btn btn-primary btn-block">Sửa </a></td>
+						<td><a href="Category/delete/${listValue.getId()}"
+							class="btn btn-danger btn-block"> Xóa</a></td>
 					</tr>
 					<%
 						i++;

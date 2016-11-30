@@ -31,7 +31,7 @@
 		<form action="postAdd" method="post">
 			<div class="form-group col-md-8 form-inline">
 				Thể loại: <input type="text" id="name" name="name" required
-					class="form-control">
+				class="form-control">
 				<button type="submit" class="btn btn-primary">Tạo</button>
 
 			</div>

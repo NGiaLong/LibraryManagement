@@ -71,8 +71,8 @@
 						<td>${listValue.getEmail() }</td>
 						<td>${listValue.getAddress() }</td>
 						<td>${listValue.getPhone() }</td>
-						<td><a href="/LibraryManagement/edit-staff/${listValue.getId()}"class ="btn btn-primary">Sửa </a></td>
-						<td><a href="/LibraryManagement/deactivated-staff-management/${listValue.getId()}"class ="btn btn-danger">Ngưng hoạt động</a></td>
+						<td><a href="/LibraryManagement/edit-staff/${listValue.getId()}"class ="btn btn-primary btn-block">Sửa </a></td>
+						<td><a href="/LibraryManagement/deactivated-staff-management/${listValue.getId()}"class ="btn btn-warning btn-block">Ngưng hoạt động</a></td>
 					</tr>
 					<%
 						i++;

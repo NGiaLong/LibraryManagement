@@ -43,8 +43,12 @@ public class StaffJDBC implements StaffDAO {
 	public int addNewStaff(Staff staff) {
 		String sql = "insert into Staffs ( Name, DateOfBirth, Gender, Email, Password, Address, Phone, Status)"
 				+ "values(?,?,?,?,'123456',?,?,'1')";
-		return jdbcTemplateObject.update(sql, new Object[] { staff.getName(), staff.getDateOfBirth(), staff.isGender(),
-				staff.getEmail(), staff.getAddress(), staff.getPhone() });
+		try {
+			return jdbcTemplateObject.update(sql, new Object[] { staff.getName(), staff.getDateOfBirth(), staff.isGender(),
+					staff.getEmail(), staff.getAddress(), staff.getPhone() });
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 
 	@Override
@@ -62,8 +66,12 @@ public class StaffJDBC implements StaffDAO {
 	@Override
 	public int editStaffById(int id, Staff staff) {
 		String sql = "update Staffs set Name = ? , DateOfBirth = ? , Gender = ? , Email = ?  , Address = ? , Phone = ? where id = ?";
-		return jdbcTemplateObject.update(sql, new Object[] { staff.getName(), staff.getDateOfBirth(), staff.isGender(),
-				staff.getEmail(), staff.getAddress(), staff.getPhone(),id });
+		try {
+			return jdbcTemplateObject.update(sql, new Object[] { staff.getName(), staff.getDateOfBirth(), staff.isGender(),
+					staff.getEmail(), staff.getAddress(), staff.getPhone(),id });
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 
 	@Override

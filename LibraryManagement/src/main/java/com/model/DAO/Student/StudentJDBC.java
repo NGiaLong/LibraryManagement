@@ -69,19 +69,28 @@ public class StudentJDBC implements StudentDAO {
 	public int addNewStudent(Student student) {
 		String sql = "insert into Students ( Name, DateOfBirth, Gender, Email, Password, Address, Phone, Status)"
 				+ "values(?,?,?,?,'123456',?,?,'1')";
-		return jdbcTemplateObject.update(sql,
-				new Object[] {student.getName(),student.getDateOfBirth(),student.isGender(),student.getEmail(),student.getAddress(),student.getPhone()});
-	}
+		try {
+			return jdbcTemplateObject.update(sql,
+					new Object[] {student.getName(),student.getDateOfBirth(),student.isGender(),student.getEmail(),student.getAddress(),student.getPhone()});
+		} catch (Exception e) {
+			return 0;
+		}
+}
 
 	@Override
 	public int deleteStudentById(int id) {
-		return 1;
+		String sql = "delete from Students where Id = ?";
+		return jdbcTemplateObject.update(sql, new Object[]{id});
 	}
 
 	@Override
 	public int editStudentById(int id, Student student) {
 		String sql = "update Students set Name = ? , DateOfBirth = ? , Gender = ? , Email = ?  , Address = ? , Phone = ? where id = ?";
-		return jdbcTemplateObject.update(sql, new Object[] { student.getName(), student.getDateOfBirth(), student.isGender(),
-				student.getEmail(), student.getAddress(), student.getPhone(),id });
+		try {
+			return jdbcTemplateObject.update(sql, new Object[] { student.getName(), student.getDateOfBirth(), student.isGender(),
+					student.getEmail(), student.getAddress(), student.getPhone(),id });
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 }

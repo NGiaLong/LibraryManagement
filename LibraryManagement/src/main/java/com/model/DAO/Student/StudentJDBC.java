@@ -43,10 +43,24 @@ public class StudentJDBC implements StudentDAO {
 	@Override
 	public Student getStudentById(int id){
 		String sql = "select * from Students where Id = '"+id+"'";
-		Student student = (Student) jdbcTemplateObject.queryForObject(sql, new StudentMapper());
-		return student;
+		try {
+			Student student = (Student) jdbcTemplateObject.queryForObject(sql, new StudentMapper());
+			return student;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
+	@Override
+	public Student getStudentByEmail(String email){
+		String sql = "select * from Students where Email = '"+email+"'";
+		try {
+			Student student = (Student) jdbcTemplateObject.queryForObject(sql, new StudentMapper());
+			return student;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 	
 	@Override
 	public int deactivateStudentById(int id){

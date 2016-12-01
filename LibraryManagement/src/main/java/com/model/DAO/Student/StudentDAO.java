@@ -10,6 +10,8 @@ public interface StudentDAO {
 	public List<Student> getAll2();
 	
 	public Student getStudentById(int id);
+	
+	public Student getStudentByEmail(String email);
 
 	public int addNewStudent(Student student);
 

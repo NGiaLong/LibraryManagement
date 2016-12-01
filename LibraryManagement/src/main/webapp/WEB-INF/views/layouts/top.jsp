@@ -60,7 +60,7 @@
 
 <body>
 	<%
-		if ((null == session.getAttribute("staffSession")) | ("".equals(session.getAttribute("roleSession")))) {
+		if ((int)((session.getAttribute("roleSession"))) == 0) {
 	%>
 	<script type="text/javascript">
 		window.location.href = "/LibraryManagement/login";
@@ -83,7 +83,14 @@
 					<li class="dropdown pull-right"><a href="#"
 						class="dropdown-toggle" data-toggle="dropdown"><svg
 								class="glyph stroked male-user"> <use
-								xlink:href="#stroked-male-user"></use></svg>${staffSession.getName() } <span class="caret"></span></a>
+								xlink:href="#stroked-male-user"></use></svg><c:choose>
+									<c:when test="${roleSession == 1 }">
+										<c:out value="${staffSession.getName() }"></c:out>
+									</c:when>
+									<c:otherwise>
+										<c:out value="${studentSession.getName() }"></c:out>
+									</c:otherwise>
+								</c:choose> <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#"><svg class="glyph stroked male-user">
 									<use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>

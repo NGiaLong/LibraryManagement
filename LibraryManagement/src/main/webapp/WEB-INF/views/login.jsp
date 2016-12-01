@@ -26,9 +26,20 @@
 					<div class="center">
 						<img src="http://placehold.it/250x100&text=Logo" alt="logo">
 					</div>
-					<div>${mess}</div>
 					<form:form id="form" style="" class="login-form" method="post"
 						modelAttribute="loginBean">
+						<div class="control-group">
+							<div class="input-prepend">
+								<fieldset>
+									<span class="add-on"><i class="icon-user"></i></span>
+									<form:select class="form-control" path="role">
+										<form:option value="1">Nhân viên</form:option>
+										<form:option value="2">Đọc giả</form:option>
+									</form:select>
+								</fieldset>
+
+							</div>
+						</div>
 						<div class="control-group">
 							<div class="input-prepend">
 								<fieldset>

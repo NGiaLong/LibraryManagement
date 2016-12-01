@@ -18,8 +18,7 @@
 	<div id="page-wrapper" style="height: 100%">
 		<div class="container-fluid">
 			<h1>Sửa nhân viên</h1>
-				<a href="/LibraryManagement/reset-staff-password/${staff.getId() }" class="btn btn-primary" >Khôi phục mật khẩu</a>
-				<div></br></div>
+			<hr>
 			<form:form id="form" modelAttribute="editStaffBean">
 				<div class="row">
 					<div class="form-group col-sm-6 ">

@@ -76,9 +76,15 @@
 							<td><a
 								href="/LibraryManagement/edit-staff/${listValue.getId()}"
 								class="btn btn-primary btn-block">Sửa </a></td>
-							<td><a
-								href="/LibraryManagement/deactivated-staff-management/${listValue.getId()}"
-								class="btn btn-warning btn-block">Ngưng hoạt động</a></td>
+							<td>
+								<c:choose>
+									<c:when test="${listValue.getId() != staffSession.getId()}">
+										<a
+											href="/LibraryManagement/deactivated-staff-management/${listValue.getId()}"
+											class="btn btn-warning btn-block">Ngưng hoạt động</a>
+									</c:when>
+								</c:choose>
+							</td>
 						</tr>
 						<%
 							i++;

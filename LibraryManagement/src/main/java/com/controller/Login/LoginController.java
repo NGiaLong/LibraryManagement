@@ -29,7 +29,7 @@ public class LoginController {
 		try {
 			int roleSession =  (int) request.getSession().getAttribute("roleSession");		
 			if (roleSession != 0) {
-				return "redirect:/index";
+				return "redirect:/thongtincanhan";
 			}
 		} catch (Exception e) {
 			return "login";
@@ -59,7 +59,7 @@ public class LoginController {
 					request.getSession().setAttribute("staffSession", staff);
 					request.getSession().setAttribute("roleSession", 1);
 					redirectAtt.addFlashAttribute("success", "Đăng nhập thành công!");
-					return "redirect:/index";
+					return "redirect:/thongtincanhan";
 				}
 			}
 		} else if (role == 2){
@@ -77,7 +77,7 @@ public class LoginController {
 					request.getSession().setAttribute("studentSession", student);
 					request.getSession().setAttribute("roleSession", 2);
 					redirectAtt.addFlashAttribute("success", "Đăng nhập thành công!");
-					return "redirect:/index";
+					return "redirect:/thongtincanhan";
 				}
 			}
 		}

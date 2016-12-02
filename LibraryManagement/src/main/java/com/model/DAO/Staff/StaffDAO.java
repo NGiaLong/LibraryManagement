@@ -23,4 +23,8 @@ public interface StaffDAO {
 	public int editStaffById(int id, Staff staff);
 
 	public int resetPasswordById(int id);
+	
+	public String getPasswordById(int id);
+	
+	public int setPasswordById(int id, String pass);
 }

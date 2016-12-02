@@ -140,29 +140,33 @@
 							</h3>
 						</div>
 						<div class="modal-body">
-							<form role="form">
+
+							<form:form  modelAttribute="changePass" action="/LibraryManagement/change-password" method="POST">
+
+
 								<div class="form-group">
 									<label for="usrname"><span
-										class="glyphicon glyphicon-user"></span> Mật khẩu cũ</label> <input
-										type="password" class="form-control" id="usrname"
-										required="required" placeholder="Mật khẩu cũ">
+										class="glyphicon glyphicon-user"></span> Mật khẩu cũ</label> <form:input
+										type="password" class="form-control" id="usrname" path="oldPassword"
+										required="required" placeholder="Mật khẩu cũ"></form:input>
 								</div>
 								<div class="form-group">
 									<label for="psw"><span
-										class="glyphicon glyphicon-eye-open"></span>Mật khẩu mới</label> <input
-										type="password" class="form-control" id="psw"
-										required="required" placeholder="Mật khẩu mới">
+										class="glyphicon glyphicon-eye-open"></span>Mật khẩu mới</label> <form:input
+										type="password" class="form-control" id="psw" path="newPassword"
+										required="required" placeholder="Mật khẩu mới"></form:input>
 								</div>
 								<div class="form-group">
 									<label for="psw1"><span
 										class="glyphicon glyphicon-eye-open"></span>Nhập lại mật khẩu</label>
-									<input type="password" class="form-control" id="psw1"
-										required="required" placeholder="Nhập lại mật khẩu mới">
+									<form:input type="password" class="form-control" id="psw1" path="reNewPassword"
+										required="required" placeholder="Nhập lại mật khẩu mới"></form:input>
 								</div>
-								<button type="submit" class="btn btn-success btn-block">
+								<form:button type="submit" class="btn btn-success btn-block">
 									<span class="glyphicon glyphicon-off"></span>Đổi mật khẩu
-								</button>
-							</form>
+								</form:button>
+							</form:form>
+
 						</div>
 						<div class="modal-footer"></div>
 					</div>

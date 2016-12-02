@@ -44,8 +44,8 @@ public class StaffJDBC implements StaffDAO {
 		String sql = "insert into Staffs ( Name, DateOfBirth, Gender, Email, Password, Address, Phone, Status)"
 				+ "values(?,?,?,?,'123456',?,?,'1')";
 		try {
-			return jdbcTemplateObject.update(sql, new Object[] { staff.getName(), staff.getDateOfBirth(), staff.isGender(),
-					staff.getEmail(), staff.getAddress(), staff.getPhone() });
+			return jdbcTemplateObject.update(sql, new Object[] { staff.getName(), staff.getDateOfBirth(),
+					staff.isGender(), staff.getEmail(), staff.getAddress(), staff.getPhone() });
 		} catch (Exception e) {
 			return 0;
 		}
@@ -67,8 +67,8 @@ public class StaffJDBC implements StaffDAO {
 	public int editStaffById(int id, Staff staff) {
 		String sql = "update Staffs set Name = ? , DateOfBirth = ? , Gender = ? , Email = ?  , Address = ? , Phone = ? where id = ?";
 		try {
-			return jdbcTemplateObject.update(sql, new Object[] { staff.getName(), staff.getDateOfBirth(), staff.isGender(),
-					staff.getEmail(), staff.getAddress(), staff.getPhone(),id });
+			return jdbcTemplateObject.update(sql, new Object[] { staff.getName(), staff.getDateOfBirth(),
+					staff.isGender(), staff.getEmail(), staff.getAddress(), staff.getPhone(), id });
 		} catch (Exception e) {
 			return 0;
 		}
@@ -80,9 +80,9 @@ public class StaffJDBC implements StaffDAO {
 		Staff staff = (Staff) jdbcTemplateObject.queryForObject(sql, new StaffMapper());
 		return staff;
 	}
-	
+
 	@Override
-	public Staff getStaffByEmail (String email) {
+	public Staff getStaffByEmail(String email) {
 		String sql = "select * from Staffs where Email = '" + email + "'";
 		try {
 			Staff staff = (Staff) jdbcTemplateObject.queryForObject(sql, new StaffMapper());
@@ -96,5 +96,27 @@ public class StaffJDBC implements StaffDAO {
 	public int resetPasswordById(int id) {
 		String sql = "update Staffs set Password = '123456' where Id = '" + id + "'";
 		return jdbcTemplateObject.update(sql);
+	}
+
+	@Override
+	public String getPasswordById(int id) {
+		String sql = "select Password from Staffs where Id = '" + id + "'";
+		try {
+			Staff staff = (Staff) jdbcTemplateObject.queryForObject(sql, new StaffMapper());
+			String pass = staff.getPassword();
+			return pass;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	@Override
+	public int setPasswordById(int id, String pass){
+		String sql = "update Staffs set Password = ? where Id = ?";
+		try {
+			return jdbcTemplateObject.update(sql, new Object[]{pass, id});
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 }

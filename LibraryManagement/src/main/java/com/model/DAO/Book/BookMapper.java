@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.model.Book;
-import com.model.Category;
 
 public class BookMapper implements RowMapper<Book>{
 	public Book mapRow(ResultSet rs, int rowNum) throws SQLException{

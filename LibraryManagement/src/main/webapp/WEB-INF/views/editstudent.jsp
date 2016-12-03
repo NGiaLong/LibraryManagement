@@ -19,7 +19,7 @@
 		<div class="container-fluid">
 			<h1>Sửa đọc giả</h1>
 				<a href="/LibraryManagement/reset-student-password/${student.getId() }" class="btn btn-primary" >Khôi phục mật khẩu</a>
-				<div></br></div>
+				<hr>
 			<form:form id="form" modelAttribute="editStudentBean">
 				<div class="row">
 					<div class="form-group col-sm-6 ">

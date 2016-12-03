@@ -17,6 +17,7 @@
 	</div>
 	<div id="page-wrapper" style="height: 100%">
 		<div class="container-fluid">
+			</br>
 			<c:if test="${success != null }">
 				<div class="alert alert-success">${success }</div>
 			</c:if>
@@ -126,7 +127,108 @@
 			</form:form>
 			<%
 				}
+				if ((int) ((session.getAttribute("roleSession"))) == 2) {
 			%>
+			<form:form id="form" modelAttribute="perInfor">
+				<div class="row">
+					<div class="form-group col-sm-6 ">
+						<label class="control-label col-sm-4">ĐGID:</label>
+						<div class="input-group col-sm-8">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span>
+							<form:input path="id" type="text" class="form-control"
+								id="inputPhone" name="inputPhone"
+								value="${studentSession.getId() }" disabled="true" />
+						</div>
+					</div>
+					<div class="form-group col-sm-6 ">
+						<label class="control-label col-sm-4">Tên đọc giả:</label>
+						<div class="input-group col-sm-8">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span>
+							<form:input path="name" type="text" class="form-control"
+								id="inputPhone" name="inputPhone"
+								value="${studentSession.getName() }" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+
+					<div class="form-group col-sm-6">
+						<label class="control-label col-sm-4 ">Ngày sinh:</label>
+						<div class="input-group date col-sm-8">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-calendar"></i></span>
+							<form:input path="dateOfBirth" type="date" class="form-control"
+								id="inputDate" name="inputDate"
+								value="${studentSession.getDateOfBirth() }" />
+						</div>
+					</div>
+					<div class="form-group col-sm-6">
+						<label class="control-label col-sm-4 ">Giới tính:</label>
+						<div class="radio-inline col-sm-8">
+							<c:choose>
+								<c:when test="${studentSession.isGender() }">
+									<label class="col-sm-4"><form:radiobutton path="gender"
+											value="false" class="radio" />Nữ</label>
+									<label class="col-sm-4"><form:radiobutton path="gender"
+											value="true" class="radio" checked="true" />Nam</label>
+								</c:when>
+								<c:otherwise>
+									<label class="col-sm-4"><form:radiobutton path="gender"
+											value="false" class="radio" checked="true" />Nữ</label>
+									<label class="col-sm-4"><form:radiobutton path="gender"
+											value="true" class="radio" />Nam</label>
+								</c:otherwise>
+							</c:choose>
+
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<label class="control-label col-sm-4 ">Email:</label>
+						<div class="input-group col-sm-8">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-envelope"></i></span>
+							<form:input path="email" type="email" class="form-control"
+								id="inputPhoneNumber" name="inputPhoneNumber"
+								value="${studentSession.getEmail() }" />
+						</div>
+					</div>
+					<div class="form-group col-sm-6">
+						<label class="control-label col-sm-4 ">Số điện thoại:</label>
+						<div class="input-group col-sm-8">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-phone"></i></span>
+							<form:input path="phone" type="number" class="form-control"
+								id="inputPhoneNumber" name="inputPhoneNumber"
+								value="${studentSession.getPhone() }" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<label class="control-label col-sm-4 ">Địa chỉ:</label>
+						<div class="input-group col-sm-8">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-home"></i></span>
+							<form:input path="address" type="text" class="form-control"
+								id="inputAdress" name="inputAdress"
+								value="${studentSession.getAddress() }" />
+						</div>
+					</div>
+				</div>
+				<div align="right">
+					<form:button type="submit" class="btn btn-primary">Sửa</form:button>
+					<button type="button" class="btn btn-info" id="myBtn">Thay
+						đổi mật khẩu</button>
+				</div>
+			</form:form>
+			<%
+				}
+			%>
+
 		</div>
 		<!-- /.container-fluid -->
 		<div>
@@ -141,26 +243,30 @@
 						</div>
 						<div class="modal-body">
 
-							<form:form  modelAttribute="changePass" action="/LibraryManagement/change-password" method="POST">
+							<form:form modelAttribute="changePass"
+								action="/LibraryManagement/change-password" method="POST">
 
 
 								<div class="form-group">
 									<label for="usrname"><span
-										class="glyphicon glyphicon-user"></span> Mật khẩu cũ</label> <form:input
-										type="password" class="form-control" id="usrname" path="oldPassword"
-										required="required" placeholder="Mật khẩu cũ"></form:input>
+										class="glyphicon glyphicon-user"></span> Mật khẩu cũ</label>
+									<form:input type="password" class="form-control" id="usrname"
+										path="oldPassword" required="required"
+										placeholder="Mật khẩu cũ"></form:input>
 								</div>
 								<div class="form-group">
 									<label for="psw"><span
-										class="glyphicon glyphicon-eye-open"></span>Mật khẩu mới</label> <form:input
-										type="password" class="form-control" id="psw" path="newPassword"
-										required="required" placeholder="Mật khẩu mới"></form:input>
+										class="glyphicon glyphicon-eye-open"></span>Mật khẩu mới</label>
+									<form:input type="password" class="form-control" id="psw"
+										path="newPassword" required="required"
+										placeholder="Mật khẩu mới"></form:input>
 								</div>
 								<div class="form-group">
 									<label for="psw1"><span
 										class="glyphicon glyphicon-eye-open"></span>Nhập lại mật khẩu</label>
-									<form:input type="password" class="form-control" id="psw1" path="reNewPassword"
-										required="required" placeholder="Nhập lại mật khẩu mới"></form:input>
+									<form:input type="password" class="form-control" id="psw1"
+										path="reNewPassword" required="required"
+										placeholder="Nhập lại mật khẩu mới"></form:input>
 								</div>
 								<form:button type="submit" class="btn btn-success btn-block">
 									<span class="glyphicon glyphicon-off"></span>Đổi mật khẩu

@@ -111,4 +111,13 @@ public class StudentJDBC implements StudentDAO {
 			return 0;
 		}
 	}
+	@Override
+	public int setPasswordById(int id, String password){
+		String sql = "update Students set Password = ? where Id = ?";
+		try {
+			return jdbcTemplateObject.update(sql, new Object[]{password, id});
+		} catch (Exception e) {
+			return 0;
+		}
+	}
 }

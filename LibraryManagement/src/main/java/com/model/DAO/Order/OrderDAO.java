@@ -1,5 +1,9 @@
 package com.model.DAO.Order;
 
-public interface OrderDAO {
+import java.util.List;
 
+import com.model.Order;
+
+public interface OrderDAO {
+	public List<Order> getAll(); 
 }

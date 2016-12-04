@@ -170,7 +170,7 @@
 								xlink:href="#stroked-chevron-right"></use></svg> Danh sách thể loại
 					</a></li>
 				</ul></li>
-			<li class="parent "><a href="#"> <span
+			<li class="parent "><a href="/LibraryManagement/Order"> <span
 					data-toggle="collapse" href="#sub-item-4"><svg
 							class="glyph stroked chevron-down"> <use
 							xlink:href="#stroked-chevron-down"></use></svg></span> Quản lý mượn

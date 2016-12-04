@@ -16,7 +16,7 @@ public class OrderMapper implements RowMapper<Order> {
 		order.setStaffId(rs.getInt(5));
 		order.setDatePurchase(rs.getString(6));
 		order.setDateExpire(rs.getString(7));
-		order.setStatus(rs.getBoolean(9));
+		order.setStatus(rs.getBoolean(8));
 		return order;
 	}
 	

@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,12 +21,34 @@ import com.model.DAO.Student.StudentJDBC;
 @RequestMapping(value = "/Order")
 public class OrderController {
 	private ApplicationContext context;
+	
 	@RequestMapping( method = RequestMethod.GET)
-	public String studentmanagement(ModelMap model, HttpServletRequest request) {
+	public String getListOrder(ModelMap model, HttpServletRequest request) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		OrderJDBC orderJDBC = (OrderJDBC) context.getBean("orderJDBC");
 		List<Order> oList = orderJDBC.getAll();
 		model.addAttribute("oList", oList);
 		return "indexOrder";
+	}
+	
+	@RequestMapping(value = "/ExpiredHistory", method = RequestMethod.GET)
+	public String getListExpiredHistory(ModelMap model, HttpServletRequest request){
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		OrderJDBC orderJDBC = (OrderJDBC) context.getBean("orderJDBC");
+		List<Order> expiredList = orderJDBC.getExpired();
+		model.addAttribute("expiredList", expiredList);
+		return "expiredHistory";
+	}
+	
+	@RequestMapping(value = "/Detail/{id}", method = RequestMethod.GET)
+	public String getOrderDetail(ModelMap model, HttpServletRequest request, @PathVariable int id){
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		OrderJDBC orderJDBC = (OrderJDBC) context.getBean("orderJDBC");
+		Order order = orderJDBC.getOne(id);
+		model.addAttribute("order", order);
+		
+		
+		
+		return "expiredHistory";
 	}
 }

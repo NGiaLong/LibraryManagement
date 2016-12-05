@@ -176,15 +176,15 @@
 							xlink:href="#stroked-chevron-down"></use></svg></span> Quản lý mượn
 			</a>
 				<ul class="children collapse" id="sub-item-4">
-					<li><a class="" href="/FFVStore/thongkethu"> <svg
+					<li><a class="" href="/LibraryManagement/Order/Add"> <svg
 								class="glyph stroked chevron-right"> <use
 								xlink:href="#stroked-chevron-right"></use></svg> Tạo mới mượn sách
 					</a></li>
-					<li><a class="" href="/FFVStore/thongkeluong"> <svg
+					<li><a class="" href="/LibraryManagement/Order"> <svg
 								class="glyph stroked chevron-right"> <use
 								xlink:href="#stroked-chevron-right"></use></svg> Danh sách mượn sách
 					</a></li>
-					<li><a class="" href="#"> <svg
+					<li><a class="" href="/LibraryManagement/Order/ExpiredHistory"> <svg
 								class="glyph stroked chevron-right"> <use
 								xlink:href="#stroked-chevron-right"></use></svg> Danh sách quá hạn
 					</a></li>

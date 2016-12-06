@@ -53,4 +53,16 @@ public class OrderJDBC implements OrderDAO {
 			return null;
 		}
 	}
+
+	@Override
+	public int deleteOne(int id) {
+		String sql = "DELETE FROM Orders WHERE Id = ?";
+		return jdbcTemplateObject.update(sql, new Object[] {id});
+	}
+
+	@Override
+	public int updateStatus(int id) {
+		String sql = "UPDATE Orders SET Status = 1 WHERE Id = ?";
+		return jdbcTemplateObject.update(sql, new Object[] {id});
+	}
 }

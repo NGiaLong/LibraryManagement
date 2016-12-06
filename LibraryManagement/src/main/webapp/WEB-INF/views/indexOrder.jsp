@@ -28,7 +28,7 @@
 	<hr>
 	<div class="content">
 		<c:choose>
-			<c:when test="${oList.get(0) == null }">
+			<c:when test="${oList.size() < 1 }">
 				<div class="alert alert-danger" align="center">
 					<h3>Không có đơn thuê sách nào</h3>
 				</div>
@@ -67,14 +67,8 @@
 									</c:choose></td>
 								<td>
 								<a href="Order/Detail/${listValue.getId()}" class="btn btn-info">Chi tiết</a>
-								<c:choose>
-									<c:when test="${listValue.isStatus()}">
-											<a href="" class="btn btn-warning">Xóa</a>
-										</c:when>
-										<c:otherwise>
-											<a href="" class="btn btn-success">Trả</a>
-										</c:otherwise>
-								</c:choose>
+								<a href="Order/Delete/${listValue.getId()}" class="btn btn-danger">Xóa</a>
+								<a href="Order/Return/${listValue.getId()}" class="btn btn-success">Trả</a>
 								</td>
 							</tr>
 							<%

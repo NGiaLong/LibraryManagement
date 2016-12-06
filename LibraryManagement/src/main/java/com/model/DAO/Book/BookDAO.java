@@ -10,4 +10,5 @@ public interface BookDAO {
 	public int updateBook(Book book);
 	public int deleteBook(int bookId);
 	public int addBook(Book book);
+	public int updateStatus(int bookId);
 }

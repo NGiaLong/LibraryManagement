@@ -6,4 +6,5 @@ import com.model.OrderDetail;
 
 public interface OrderDetailDAO {
 	List<OrderDetail> getDetailByOrderId(int orderId);
+	int deleteDetailByOrderId(int orderId);
 }

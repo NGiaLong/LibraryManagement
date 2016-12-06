@@ -29,4 +29,10 @@ public class OrderDetailJDBC implements OrderDetailDAO{
 		}
 	}
 
+	@Override
+	public int deleteDetailByOrderId(int orderId) {
+		String sql = "DELETE FROM OrderDetails WHERE OrderId = ?";
+		return jdbcTemplateObject.update(sql, new Object[] {orderId});
+	}
+
 }

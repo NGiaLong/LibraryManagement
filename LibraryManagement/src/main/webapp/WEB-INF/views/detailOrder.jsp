@@ -90,7 +90,6 @@
 						<th>Tác giả</th>
 						<th>Tình trạng</th>
 						<th>Ngày trả</th>
-						<th></th>
 					</thead>
 					<tbody>
 						<%
@@ -110,15 +109,7 @@
 											<c:out value="Chưa trả"></c:out>
 										</c:otherwise>
 									</c:choose></td>
-								<td>${listValue.getDatePaid()}</td>
-								<td><c:choose>
-										<c:when test="${listValue.isStatus()}">
-											<a href="" class="btn btn-warning">Hủy</a>
-										</c:when>
-										<c:otherwise>
-											<a href="" class="btn btn-success">Trả</a>
-										</c:otherwise>
-									</c:choose></td>
+								<td>${listValue.getDatePaid()}</td>								
 							</tr>
 							<%
 								i++;
@@ -128,10 +119,6 @@
 				</table>
 			</div>
 			<br>
-			<div class="pull-left">
-				<a href="/LibraryManagement/Book" class="btn btn-info">Quaylại</a>
-			</div>
-
 		</div>
 		<!-- /.container-fluid -->
 

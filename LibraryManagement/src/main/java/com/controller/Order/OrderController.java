@@ -11,9 +11,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.model.Order;
 import com.model.OrderDetail;
+import com.model.DAO.Book.BookJDBC;
 import com.model.DAO.Order.OrderJDBC;
 import com.model.DAO.OrderDetail.OrderDetailJDBC;
 
@@ -45,11 +47,62 @@ public class OrderController {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		OrderJDBC orderJDBC = (OrderJDBC) context.getBean("orderJDBC");
 		Order order = orderJDBC.getOne(id);
-		System.out.println(order);
 		model.addAttribute("order", order);
 		OrderDetailJDBC detailJDBC = (OrderDetailJDBC) context.getBean("orderDetailJDBC");
 		List<OrderDetail> detailList = detailJDBC.getDetailByOrderId(id);
 		model.addAttribute("detailList",detailList);
 		return "detailOrder";
+	}
+	
+	@RequestMapping(value = "/Return/{id}", method = RequestMethod.GET)
+	public String returnOrder(ModelMap model, HttpServletRequest request, @PathVariable int id, RedirectAttributes redirectAtt){
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		OrderJDBC orderJDBC = (OrderJDBC) context.getBean("orderJDBC");
+		OrderDetailJDBC detailJDBC = (OrderDetailJDBC) context.getBean("orderDetailJDBC");
+		BookJDBC bookJDBC = (BookJDBC) context.getBean("bookJDBC");
+		// Dat lai trang thai cua sach
+		List<OrderDetail> detailList = detailJDBC.getDetailByOrderId(id);
+		for (OrderDetail orderDetail : detailList) {
+			int book = bookJDBC.updateStatus(orderDetail.getBookId());
+			if (book != 1) {
+				redirectAtt.addFlashAttribute("error", "Lỗi cập nhật trạng thái sách");
+			}
+		}
+		int order = orderJDBC.updateStatus(id);
+		if (order == 1) {
+			redirectAtt.addFlashAttribute("success", "Trả sách thành công");
+		} else {
+			redirectAtt.addFlashAttribute("error", "Trả sách thất bại");
+		}	
+		return "redirect:/Order";
+	}
+	
+	@RequestMapping(value = "/Delete/{id}", method = RequestMethod.GET)
+	public String DeleteOrder(ModelMap model, HttpServletRequest request, @PathVariable int id, RedirectAttributes redirectAtt){
+		context = new ClassPathXmlApplicationContext("Beans.xml");		
+		BookJDBC bookJDBC = (BookJDBC) context.getBean("bookJDBC");
+		OrderDetailJDBC detailJDBC = (OrderDetailJDBC) context.getBean("orderDetailJDBC");
+		// Dat lai trang thai cua sach
+		List<OrderDetail> detailList = detailJDBC.getDetailByOrderId(id);
+		for (OrderDetail orderDetail : detailList) {
+			int book = bookJDBC.updateStatus(orderDetail.getBookId());
+			if (book != 1) {
+				redirectAtt.addFlashAttribute("error", "Lỗi cập nhật trạng thái sách");
+			}
+		}
+		// Xoa orderDetail
+		int detail = detailJDBC.deleteDetailByOrderId(id);
+		if (detail != 1) {
+			redirectAtt.addFlashAttribute("error", "Xóa chi tiết đơn mượn sách thất bại");
+		}
+		// Xoa Order
+		OrderJDBC orderJDBC = (OrderJDBC) context.getBean("orderJDBC");
+		int order = orderJDBC.deleteOne(id);
+		if (order == 1) {
+			redirectAtt.addFlashAttribute("success", "Xóa đơn mượn sách thành công");
+		} else {
+			redirectAtt.addFlashAttribute("error", "Xóa đơn mượn sách thất bại");
+		}		
+		return "redirect:/Order";
 	}
 }

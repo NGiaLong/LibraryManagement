@@ -1,12 +1,14 @@
 package com.model;
 
-import org.joda.time.DateTime;
+import java.util.Date;
 
 public class OrderDetail {
 	int id;
 	int orderId;
 	int bookId;
-	DateTime datePaid;
+	String bookTitle;
+	String bookAuthor;
+	Date datePaid;
 	boolean status;
 	public int getId() {
 		return id;
@@ -26,10 +28,10 @@ public class OrderDetail {
 	public void setBookId(int bookId) {
 		this.bookId = bookId;
 	}
-	public DateTime getDatePaid() {
+	public Date getDatePaid() {
 		return datePaid;
 	}
-	public void setDatePaid(DateTime datePaid) {
+	public void setDatePaid(Date datePaid) {
 		this.datePaid = datePaid;
 	}
 	public boolean isStatus() {
@@ -38,7 +40,19 @@ public class OrderDetail {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-	public OrderDetail(int id, int orderId, int bookId, DateTime datePaid, boolean status) {
+	public String getBookTitle() {
+		return bookTitle;
+	}
+	public void setBookTitle(String bookTitle) {
+		this.bookTitle = bookTitle;
+	}
+	public String getBookAuthor() {
+		return bookAuthor;
+	}
+	public void setBookAuthor(String bookAuthor) {
+		this.bookAuthor = bookAuthor;
+	}
+	public OrderDetail(int id, int orderId, int bookId, Date datePaid, boolean status) {
 		super();
 		this.id = id;
 		this.orderId = orderId;

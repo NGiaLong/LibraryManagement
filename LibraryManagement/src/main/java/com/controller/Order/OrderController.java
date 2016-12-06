@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.model.Order;
-import com.model.Student;
+import com.model.OrderDetail;
 import com.model.DAO.Order.OrderJDBC;
-import com.model.DAO.Student.StudentJDBC;
+import com.model.DAO.OrderDetail.OrderDetailJDBC;
 
 @Controller
 @RequestMapping(value = "/Order")
@@ -45,10 +45,11 @@ public class OrderController {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		OrderJDBC orderJDBC = (OrderJDBC) context.getBean("orderJDBC");
 		Order order = orderJDBC.getOne(id);
+		System.out.println(order);
 		model.addAttribute("order", order);
-		
-		
-		
-		return "expiredHistory";
+		OrderDetailJDBC detailJDBC = (OrderDetailJDBC) context.getBean("orderDetailJDBC");
+		List<OrderDetail> detailList = detailJDBC.getDetailByOrderId(id);
+		model.addAttribute("detailList",detailList);
+		return "detailOrder";
 	}
 }

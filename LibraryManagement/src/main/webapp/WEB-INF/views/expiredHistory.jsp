@@ -55,7 +55,7 @@
 								<td>${listValue.getStaffName()}</td>
 								<td>${listValue.getDateExpire()}</td>	
 								<td>
-									<a href="" class="btn btn-info">Chi tiết</a>	
+									<a href="./Detail/${listValue.getId()}" class="btn btn-info">Chi tiết</a>	
 									<a href="" class="btn btn-warning">Cảnh báo</a>
 									<a href="" class="btn btn-danger">Xử lý</a>
 								</td>

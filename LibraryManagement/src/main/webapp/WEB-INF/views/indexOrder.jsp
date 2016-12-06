@@ -66,7 +66,7 @@
 										</c:otherwise>
 									</c:choose></td>
 								<td>
-								<a href="" class="btn btn-info">Chi tiết</a>
+								<a href="Order/Detail/${listValue.getId()}" class="btn btn-info">Chi tiết</a>
 								<c:choose>
 									<c:when test="${listValue.isStatus()}">
 											<a href="" class="btn btn-warning">Xóa</a>

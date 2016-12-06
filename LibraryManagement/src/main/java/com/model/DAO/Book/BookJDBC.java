@@ -56,4 +56,10 @@ public class BookJDBC implements BookDAO {
 				book.getEdition(), book.getPublisher(), book.getCategoryId(), book.isStatus() });
 	}
 
+	@Override
+	public int updateStatus(int bookId) {
+		String SQL = "update Books set Status = 1 WHERE Id = ? ";
+		return jdbcTemplateObject.update(SQL, new Object[] {bookId});
+	}
+
 }

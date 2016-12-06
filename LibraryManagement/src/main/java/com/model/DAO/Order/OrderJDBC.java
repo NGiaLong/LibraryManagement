@@ -16,13 +16,53 @@ public class OrderJDBC implements OrderDAO {
 		this.dataSource = dataSource;
 		this.jdbcTemplateObject = new JdbcTemplate(dataSource);
 	}
+	
 	public List<Order> getAll(){
-		String sql = "select * from dbo.V_Order order by Status asc, DateExpire asc";
+		String sql = "SELECT o.Id, st.Id, st.Name, sta.Name, sta.Id, o.DatePurchase, o.DateExpire, o.Status "
+				+ "FROM Orders o, Students st, Staffs sta where o.StaffId = sta.Id AND o.StudentId = st.Id AND "
+				+ "o.DateExpire > GETDATE() AND o.Status=0";
 		try {
 			List<Order> listOrder = jdbcTemplateObject.query(sql, new OrderMapper());
 			return listOrder;
 		} catch (Exception e) {
 			return null;
 		}
+	}
+	
+	@Override
+	public List<Order> getExpired() {
+		String sql = "SELECT o.Id, st.Id, st.Name, sta.Name, sta.Id, o.DatePurchase, o.DateExpire, o.Status"
+				+ " FROM Orders o, Students st, Staffs sta where o.StaffId = sta.Id AND o.StudentId = st.Id "
+				+ "AND o.DateExpire < GETDATE() AND o.Status=0"; 
+		try {
+			List<Order> listOrder = jdbcTemplateObject.query(sql, new OrderMapper());
+			return listOrder;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public Order getOne(int id) {
+		String sql = "SELECT o.Id, st.Id, st.Name, sta.Name, sta.Id, o.DatePurchase, o.DateExpire, o.Status"
+				+ " FROM Orders o, Students st, Staffs sta where o.StaffId = sta.Id AND o.StudentId = st.Id AND o.Id = "+id;
+		try {
+			Order order = jdbcTemplateObject.queryForObject(sql, new OrderMapper());
+			return order;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public int deleteOne(int id) {
+		String sql = "DELETE FROM Orders WHERE Id = ?";
+		return jdbcTemplateObject.update(sql, new Object[] {id});
+	}
+
+	@Override
+	public int updateStatus(int id) {
+		String sql = "UPDATE Orders SET Status = 1 WHERE Id = ?";
+		return jdbcTemplateObject.update(sql, new Object[] {id});
 	}
 }

@@ -16,7 +16,7 @@
 	</div>
 	<!--/.row-->
 	<div class="header">
-		<h1>DANH SÁCH THUÊ SÁCH</h1>
+		<h1>DANH SÁCH BẠN ĐỌC QUÁ HẠN TRẢ SÁCH</h1>
 	</div>
 	</br>
 	<c:if test="${success != null }">
@@ -28,47 +28,36 @@
 	<hr>
 	<div class="content">
 		<c:choose>
-			<c:when test="${oList.size() < 1 }">
+			<c:when test="${expiredList.get(0) == null}">
 				<div class="alert alert-danger" align="center">
-					<h3>Không có đơn thuê sách nào</h3>
+					<h3>Không có đơn thuê sách nào quá hạn trả</h3>
 				</div>
 			</c:when>
 			<c:otherwise>
 				<table id="example" class="display">
 					<thead>
 						<th>STT</th>
-						<th>Mã thuê</th>
-						<th>Tên đọc giả</th>
+						<th>Mã số mượn sách</th>
+						<th>Tên độc giả</th>
 						<th>Tên nhân viên</th>
-						<th>Ngày mượn</th>
-						<th>Ngày trả</th>
-						<th>Tình trạng</th>
+						<th>Ngày hết hạn</th>						
 						<th></th>
 					</thead>
 					<tbody>
 						<%
 							int i = 1;
 						%>
-						<c:forEach var="listValue" items="${oList}">
+						<c:forEach var="listValue" items="${expiredList}">
 							<tr>
 								<td><%=i%></td>
 								<td><a>${listValue.getId()}</a></td>
 								<td>${listValue.getStudentName()}</td>
 								<td>${listValue.getStaffName()}</td>
-								<td>${listValue.getDatePurchase()}</td>
-								<td>${listValue.getDateExpire()}</td>
-								<td><c:choose>
-										<c:when test="${listValue.isStatus()}">
-											<c:out value="Đã trả"></c:out>
-										</c:when>
-										<c:otherwise>
-											<c:out value="Chưa trả"></c:out>
-										</c:otherwise>
-									</c:choose></td>
+								<td>${listValue.getDateExpire()}</td>	
 								<td>
-								<a href="Order/Detail/${listValue.getId()}" class="btn btn-info">Chi tiết</a>
-								<a href="Order/Delete/${listValue.getId()}" class="btn btn-danger">Xóa</a>
-								<a href="Order/Return/${listValue.getId()}" class="btn btn-success">Trả</a>
+									<a href="./Detail/${listValue.getId()}" class="btn btn-info">Chi tiết</a>	
+									<a href="" class="btn btn-warning">Cảnh báo</a>
+									<a href="" class="btn btn-danger">Xử lý</a>
 								</td>
 							</tr>
 							<%

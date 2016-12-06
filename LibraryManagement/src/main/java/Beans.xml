@@ -37,6 +37,10 @@
 	<bean id="orderJDBC" class="com.model.DAO.Order.OrderJDBC">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	<!-- Definition for OrderDetailJDBCTemplate bean -->
+	<bean id="orderDetailJDBC" class="com.model.DAO.OrderDetail.OrderDetailJDBC">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 	
 	
 </beans>

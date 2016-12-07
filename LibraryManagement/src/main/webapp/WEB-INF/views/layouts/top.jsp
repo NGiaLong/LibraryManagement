@@ -60,8 +60,8 @@
 
 <body>
 	<%
-		int rolePermission = (int) ((session.getAttribute("roleSession")));
-		if (rolePermission == 0) {
+
+		if ((session.getAttribute("roleSession") == null)||((int)session.getAttribute("roleSession") == 1 && session.getAttribute("staffSession") == null)||((int)session.getAttribute("roleSession") == 2 && session.getAttribute("studentSession") == null)) {
 	%>
 	<script type="text/javascript">
 		window.location.href = "/LibraryManagement/login";
@@ -70,6 +70,7 @@
 		return;
 		}
 	%>
+	
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -108,7 +109,7 @@
 	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<ul class="nav menu">
 			<%
-				if (rolePermission == 1) {
+				if ((int)session.getAttribute("roleSession") == 1) {
 			%>
 			<li class="parent "><a
 				href="/LibraryManagement/staff-management"> <span
@@ -192,7 +193,7 @@
 			<li role="presentation" class="divider"></li>
 			<%
 				}
-				if (rolePermission == 2) {
+				if ((int)session.getAttribute("roleSession") == 2) {
 			%>
 
 			<%

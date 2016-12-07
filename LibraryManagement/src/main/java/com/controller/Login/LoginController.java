@@ -48,17 +48,17 @@ public class LoginController {
 			StaffJDBC staffJDBC = (StaffJDBC) context.getBean("staffJDBC");
 			Staff staff = staffJDBC.getStaffByEmail(email);
 			if (staff == null) {
-				model.addAttribute("error", "TÃªn Ä‘Äƒng nháº­p hoáº·c máº­t kháº©u khÃ´ng chÃ­nh xÃ¡c");
+				model.addAttribute("error", "Email hoặc mật khẩu không chính xác");
 				return "login";
 			}
 			if (password.equals(staff.getPassword())) {
 				if (!staff.isStatus()) {
-					model.addAttribute("error", "TÃ i khoáº£n nÃ y Ä‘ang bá»‹ khÃ³a");
+					model.addAttribute("error", "Tài khoản này đã bị khóa");
 					return "login";
 				} else {
 					request.getSession().setAttribute("staffSession", staff);
 					request.getSession().setAttribute("roleSession", 1);
-					redirectAtt.addFlashAttribute("success", "Ä�Äƒng nháº­p thÃ nh cÃ´ng!");
+					redirectAtt.addFlashAttribute("success", "Đăng nhập thành công");
 					return "redirect:/thongtincanhan";
 				}
 			}
@@ -66,17 +66,17 @@ public class LoginController {
 			StudentJDBC studentJDBC = (StudentJDBC) context.getBean("studentJDBC");
 			Student student = studentJDBC.getStudentByEmail(email);
 			if (student == null) {
-				model.addAttribute("error", "TÃªn Ä‘Äƒng nháº­p hoáº·c máº­t kháº©u khÃ´ng chÃ­nh xÃ¡c");
+				model.addAttribute("error", "Email hoặc mật khẩu không chính xác");
 				return "login";
 			}
 			if (password.equals(student.getPassword())) {
 				if (!student.isStatus()) {
-					model.addAttribute("error", "TÃ i khoáº£n nÃ y Ä‘ang bá»‹ khÃ³a");
+					model.addAttribute("error", "Tài khoản này đã bị khóa");
 					return "login";
 				} else {
 					request.getSession().setAttribute("studentSession", student);
 					request.getSession().setAttribute("roleSession", 2);
-					redirectAtt.addFlashAttribute("success", "Ä�Äƒng nháº­p thÃ nh cÃ´ng!");
+					redirectAtt.addFlashAttribute("success", "Đăng nhập thành công");
 					return "redirect:/thongtincanhan";
 				}
 			}

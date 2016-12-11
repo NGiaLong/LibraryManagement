@@ -235,10 +235,10 @@
 			<div class="modal fade" id="myModal" role="dialog">
 				<div class="modal-dialog">
 					<div class="modal-content">
-						<div class="modal-header">
+						<div class="modal-header" style="background: lightblue">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h3 align="center">
-								<span class="glyphicon glyphicon-lock"></span> Thay đổi mật khẩu
+							<h3 align="center" >
+								<span class="glyphicon glyphicon-lock" ></span> Thay đổi mật khẩu
 							</h3>
 						</div>
 						<div class="modal-body">
@@ -268,13 +268,15 @@
 										path="reNewPassword" required="required"
 										placeholder="Nhập lại mật khẩu mới"></form:input>
 								</div>
-								<form:button type="submit" class="btn btn-success btn-block">
-									<span class="glyphicon glyphicon-off"></span>Đổi mật khẩu
+								<div class="modal-footer">
+									<form:button type="submit" class="btn btn-success">
+										<span class="glyphicon glyphicon-off"></span>Đổi mật khẩu
 								</form:button>
+								</div>
 							</form:form>
 
 						</div>
-						<div class="modal-footer"></div>
+					
 					</div>
 				</div>
 			</div>

@@ -7,6 +7,8 @@ import com.model.Staff;
 public interface StaffDAO {
 
 	public List<Staff> getAll();
+	
+	public List<Staff> getAll1();
 
 	public List<Staff> getAll2();
 

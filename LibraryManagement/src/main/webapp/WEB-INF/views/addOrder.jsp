@@ -1,7 +1,7 @@
 <%@page import="org.springframework.ui.ModelMap"%>
 <%@page import="org.springframework.ui.Model"%>
 <%@page import="java.util.List"%>
-<%@page import="com.model.Student"%>
+<%@page import="com.model.Staff"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -17,7 +17,7 @@
 	</div>
 	<!--/.row-->
 	<div class="header">
-		<h1>NGƯNG HOẠT ĐỘNG</h1>
+		<h1>DANH SÁCH ĐỘC GIẢ</h1>
 	</div>
 	<c:if test="${success != null }">
 		<div class="alert alert-success">${success }</div>
@@ -26,45 +26,38 @@
 		<div class="alert alert-danger">${error }</div>
 	</c:if>
 	<div class="content">
+		
 		<div>
 			<hr>
 		</div>
-		<c:choose>
-			<c:when test="${sList.size() < 1 }">
-				<div class="alert alert-danger" align="center">
-					<h3>Không có đọc giả nào nào</h3>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<table id="example" class="display">
-					<thead>
-						<th>STT</th>
-						<th>ĐGID</th>
-						<th>Tên</th>
-						<th></th>
-					</thead>
-					<tbody>
-						<%
-							int i = 1;
-						%>
-						<c:forEach var="listValue" items="${sList}">
-							<tr>
-								<td><%=i%></td>
-								<td>${listValue.getId()}</td>
-								<td style="resize: both; overflow: auto; width: 100%;"">${listValue.getName()}</td>
-								<td align="center" ><a
-									href="/LibraryManagement/reactive-student/${listValue.getId()} "
-									class="btn btn-primary"> Tái hoạt động</a></td>
-								
-							</tr>
-							<%
-								i++;
-							%>
-						</c:forEach>
-					</tbody>
-				</table>
-			</c:otherwise>
-		</c:choose>
+		<table id="example" class="display">
+			<thead>
+				<th>STT</th>
+				<th>ĐGID</th>
+				<th>Họ tên</th>
+				<th>Email</th>
+				<th>Số điện thoại</th>
+				<th></th>
+			</thead>
+			<tbody>
+				<%
+					int i = 1;
+				%>
+				<c:forEach var="listValue" items="${sList}">
+					<tr>
+						<td><%=i%></td>
+						<td>${listValue.getId()}</td>
+						<td>${listValue.getName()}</td>
+						<td>${listValue.getEmail() }</td>
+						<td>${listValue.getPhone() }</td>
+						<td align="center"><a href="/LibraryManagement/Order/Add/${listValue.getId()}" class ="btn btn-success">Tạo</a></td>
+					</tr>
+					<%
+						i++;
+					%>
+				</c:forEach>
+			</tbody>
+		</table>
 	</div>
 </div>
 <jsp:include page="layouts/bot.jsp"></jsp:include>

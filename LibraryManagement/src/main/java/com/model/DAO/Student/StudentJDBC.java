@@ -30,6 +30,17 @@ public class StudentJDBC implements StudentDAO {
 	}
 
 	@Override
+	public List<Student> getAll1() {
+		String sql = "select * from Students";
+		try {
+			List<Student> studentList = jdbcTemplateObject.query(sql, new StudentMapper());
+			return studentList;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	@Override
 	public List<Student> getAll2() {
 		String sql = "select * from Students where status = '0'";
 		try {
@@ -120,4 +131,5 @@ public class StudentJDBC implements StudentDAO {
 			return 0;
 		}
 	}
+	
 }

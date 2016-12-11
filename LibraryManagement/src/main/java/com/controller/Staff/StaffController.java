@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.model.Staff;
+import com.model.Student;
 import com.model.DAO.Staff.StaffJDBC;
+import com.model.DAO.Student.StudentJDBC;
 
 @Controller
 public class StaffController {
@@ -101,6 +103,21 @@ public class StaffController {
 			HttpServletRequest request, RedirectAttributes redirectAtt) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		StaffJDBC staffJDBC = (StaffJDBC) context.getBean("staffJDBC");
+		StudentJDBC studentJDBC = (StudentJDBC) context.getBean("studentJDBC");
+		List<Staff> staffs = staffJDBC.getAll1();
+		List<Student> students = studentJDBC.getAll1();
+		for (Staff staff : staffs) {
+			if(staff.getEmail().equals(createStaffBean.getEmail())){
+				redirectAtt.addFlashAttribute("error", "Email đã tồn tại!");
+				return "redirect:/staff-management";
+			}
+		}
+		for (Student student : students) {
+			if(student.getEmail().equals(createStaffBean.getEmail())){
+				redirectAtt.addFlashAttribute("error", "Email đã tồn tại!");
+				return "redirect:/staff-management";
+			}
+		}
 		int createStaff = staffJDBC.addNewStaff(
 				new Staff(createStaffBean.getName(), createStaffBean.getDateOfBirth(), createStaffBean.isGender(),
 						createStaffBean.getEmail(), createStaffBean.getAddress(), createStaffBean.getPhone()));

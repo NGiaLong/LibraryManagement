@@ -27,6 +27,17 @@ public class StaffJDBC implements StaffDAO {
 			return null;
 		}
 	}
+	
+	@Override
+	public List<Staff> getAll1(){
+		String sql = "select * from Staffs";
+		try {
+			List<Staff> staffList = jdbcTemplateObject.query(sql, new StaffMapper());
+			return staffList;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
 	@Override
 	public List<Staff> getAll2() {

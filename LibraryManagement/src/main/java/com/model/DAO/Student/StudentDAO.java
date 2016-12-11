@@ -6,6 +6,8 @@ import com.model.Student;
 
 public interface StudentDAO {
 	public List<Student> getAll();
+	
+	public List<Student> getAll1();
 
 	public List<Student> getAll2();
 	

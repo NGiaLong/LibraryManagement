@@ -15,9 +15,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.model.Order;
 import com.model.OrderDetail;
+import com.model.Student;
 import com.model.DAO.Book.BookJDBC;
 import com.model.DAO.Order.OrderJDBC;
 import com.model.DAO.OrderDetail.OrderDetailJDBC;
+import com.model.DAO.Student.StudentJDBC;
 
 @Controller
 @RequestMapping(value = "/Order")
@@ -33,8 +35,17 @@ public class OrderController {
 		return "indexOrder";
 	}
 	
-	@RequestMapping(value = "/ExpiredHistory", method = RequestMethod.GET)
+	@RequestMapping(value = "/Add", method = RequestMethod.GET)
 	public String getListExpiredHistory(ModelMap model, HttpServletRequest request){
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		StudentJDBC studentJDBC = (StudentJDBC) context.getBean("studentJDBC");
+		List<Student> students = studentJDBC.getAll();
+		model.addAttribute("sList", students);
+		return "addOrder";
+	}
+	
+	@RequestMapping(value = "/ExpiredHistory", method = RequestMethod.GET)
+	public String addOrder(ModelMap model, HttpServletRequest request){
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		OrderJDBC orderJDBC = (OrderJDBC) context.getBean("orderJDBC");
 		List<Order> expiredList = orderJDBC.getExpired();

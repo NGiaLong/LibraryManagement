@@ -27,34 +27,44 @@
 	</c:if>
 	<div class="content">
 		<div>
-			</br>
+			<hr>
 		</div>
-		<table id="example" class="display">
-			<thead>
-				<th>STT</th>
-				<th>ĐGID</th>
-				<th>Tên</th>
-				<th></th>
-				<th></th>
-			</thead>
-			<tbody>
-				<%
-					int i = 1;
-				%>
-				<c:forEach var="listValue" items="${sList}">
-					<tr>
-						<td><%=i%></td>
-						<td>${listValue.getId()}</td>
-						<td>${listValue.getName()}</td>
-						<td><a href="/LibraryManagement/reactive-student/${listValue.getId()} " class="btn btn-primary btn-block"> Tái hoạt động</a></td>
-						<td><a href="/LibraryManagement/delete-student/${listValue.getId()}" class="btn btn-danger btn-block"> Xóa</a></td>
-					</tr>
-					<%
-						i++;
-					%>
-				</c:forEach>
-			</tbody>
-		</table>
+		<c:choose>
+			<c:when test="${sList.size() < 1 }">
+				<div class="alert alert-danger" align="center">
+					<h3>Không có đọc giả nào nào</h3>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<table id="example" class="display">
+					<thead>
+						<th>STT</th>
+						<th>ĐGID</th>
+						<th>Tên</th>
+						<th></th>
+					</thead>
+					<tbody>
+						<%
+							int i = 1;
+						%>
+						<c:forEach var="listValue" items="${sList}">
+							<tr>
+								<td><%=i%></td>
+								<td>${listValue.getId()}</td>
+								<td style="resize: both; overflow: auto; width: 100%;"">${listValue.getName()}</td>
+								<td align="center" ><a
+									href="/LibraryManagement/reactive-student/${listValue.getId()} "
+									class="btn btn-primary"> Tái hoạt động</a></td>
+								
+							</tr>
+							<%
+								i++;
+							%>
+						</c:forEach>
+					</tbody>
+				</table>
+			</c:otherwise>
+		</c:choose>
 	</div>
 </div>
 <jsp:include page="layouts/bot.jsp"></jsp:include>

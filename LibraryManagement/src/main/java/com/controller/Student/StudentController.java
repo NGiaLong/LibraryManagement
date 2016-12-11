@@ -128,13 +128,13 @@ public class StudentController {
 		for (Staff staff : staffs) {
 			if(staff.getEmail().equals(addStudentBean.getEmail())){
 				redirectAtt.addFlashAttribute("error", "Email đã tồn tại!");
-				return "redirect:/staff-management";
+				return "redirect:/student-management";
 			}
 		}
 		for (Student student : students) {
 			if(student.getEmail().equals(addStudentBean.getEmail())){
 				redirectAtt.addFlashAttribute("error", "Email đã tồn tại!");
-				return "redirect:/staff-management";
+				return "redirect:/student-management";
 			}
 		}
 		int addStudent = studentJDBC.addNewStudent(
@@ -161,6 +161,21 @@ public class StudentController {
 	public String editstudentProcess(@ModelAttribute("SpringWeb") EditStudentBean editStudentBean, ModelMap model, HttpServletRequest request, @PathVariable int id, RedirectAttributes redirectAtt) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		StudentJDBC studentJDBC = (StudentJDBC) context.getBean("studentJDBC");
+		StaffJDBC staffJDBC = (StaffJDBC) context.getBean("staffJDBC");
+		List<Staff> staffs = staffJDBC.getAll1();
+		List<Student> students = studentJDBC.getAll1();
+		for (Staff staff : staffs) {
+			if(staff.getEmail().equals(editStudentBean.getEmail())){
+				redirectAtt.addFlashAttribute("error", "Email đã tồn tại!");
+				return "redirect:/student-management";
+			}
+		}
+		for (Student student : students) {
+			if(student.getEmail().equals(editStudentBean.getEmail())){
+				redirectAtt.addFlashAttribute("error", "Email đã tồn tại!");
+				return "redirect:/student-management";
+			}
+		}
 		int editStudent = studentJDBC.editStudentById(id, new Student(editStudentBean.getName(), editStudentBean.getDateOfBirth(), editStudentBean.isGender(), editStudentBean.getEmail(), editStudentBean.getAddress(), editStudentBean.getPhone()));
 		if (editStudent == 1) {
 			redirectAtt.addFlashAttribute("success", "Sửa đọc viên thành công");

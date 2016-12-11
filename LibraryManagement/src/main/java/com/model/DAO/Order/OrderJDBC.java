@@ -65,4 +65,24 @@ public class OrderJDBC implements OrderDAO {
 		String sql = "UPDATE Orders SET Status = 1 WHERE Id = ?";
 		return jdbcTemplateObject.update(sql, new Object[] {id});
 	}
+	@Override
+	public int addOrder(int stuId, int staId){
+		String sql = "insert into Orders (StudentId, StaffId, DatePurchase, DateExpire, Status)"
+				+ "values (?,?,getdate(),DATEADD(dd, 90, getdate()),0)";
+		try {
+			return jdbcTemplateObject.update(sql, new Object[]{stuId, staId});
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+	@Override
+	public Order getLastOrder(){
+		String sql = "select top 1 * from Orders order by Id desc";
+		try {
+			Order order = jdbcTemplateObject.queryForObject(sql, new OrderMapper());
+			return order;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

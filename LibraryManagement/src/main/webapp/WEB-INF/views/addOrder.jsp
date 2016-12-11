@@ -34,7 +34,7 @@
 			<thead>
 				<th>STT</th>
 				<th>ĐGID</th>
-				<th>Tên</th>
+				<th>Họ tên</th>
 				<th>Email</th>
 				<th>Số điện thoại</th>
 				<th></th>
@@ -50,7 +50,7 @@
 						<td>${listValue.getName()}</td>
 						<td>${listValue.getEmail() }</td>
 						<td>${listValue.getPhone() }</td>
-						<td><a href=""class ="btn btn-success">Tạo</a></td>
+						<td align="center"><a href="/LibraryManagement/Order/Add/${listValue.getId()}" class ="btn btn-success">Tạo</a></td>
 					</tr>
 					<%
 						i++;

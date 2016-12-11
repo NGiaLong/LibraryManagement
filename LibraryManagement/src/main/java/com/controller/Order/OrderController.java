@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.model.Order;
 import com.model.OrderDetail;
+import com.model.Staff;
 import com.model.Student;
 import com.model.DAO.Book.BookJDBC;
 import com.model.DAO.Order.OrderJDBC;
@@ -25,8 +26,8 @@ import com.model.DAO.Student.StudentJDBC;
 @RequestMapping(value = "/Order")
 public class OrderController {
 	private ApplicationContext context;
-	
-	@RequestMapping( method = RequestMethod.GET)
+
+	@RequestMapping(method = RequestMethod.GET)
 	public String getListOrder(ModelMap model, HttpServletRequest request) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		OrderJDBC orderJDBC = (OrderJDBC) context.getBean("orderJDBC");
@@ -34,39 +35,62 @@ public class OrderController {
 		model.addAttribute("oList", oList);
 		return "indexOrder";
 	}
-	
+
 	@RequestMapping(value = "/Add", method = RequestMethod.GET)
-	public String getListExpiredHistory(ModelMap model, HttpServletRequest request){
+	public String addOrder(ModelMap model, HttpServletRequest request) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		StudentJDBC studentJDBC = (StudentJDBC) context.getBean("studentJDBC");
 		List<Student> students = studentJDBC.getAll();
 		model.addAttribute("sList", students);
 		return "addOrder";
 	}
-	
+
+	@RequestMapping(value = "/Add/{stuId}", method = RequestMethod.GET)
+	public String addOrderId(@PathVariable int stuId, ModelMap model, HttpServletRequest request, RedirectAttributes redirectAtt) {
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		OrderJDBC orderJDBC = (OrderJDBC) context.getBean("orderJDBC");
+		Staff staffss = (Staff) request.getSession().getAttribute("staffSession");
+		int add = orderJDBC.addOrder(stuId, staffss.getId());
+		Order order =  orderJDBC.getLastOrder();
+		int id = 0;
+		if(order != null)id = order.getId();
+		if (add == 1) {
+			redirectAtt.addFlashAttribute("success", "Tạo đơn mượn sách thành công");
+			
+//			request.getSession().setAttribute("orderSSId", id);
+			System.out.println("Là: " + id);
+			return "redirect:/Add/Detail";
+		} else {
+			redirectAtt.addFlashAttribute("error", "Tạo đơn mượn sách thất bại");
+			return "redirect:/Add";
+		}
+		
+	}
+
 	@RequestMapping(value = "/ExpiredHistory", method = RequestMethod.GET)
-	public String addOrder(ModelMap model, HttpServletRequest request){
+	public String getListExpiredHistory(ModelMap model, HttpServletRequest request) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		OrderJDBC orderJDBC = (OrderJDBC) context.getBean("orderJDBC");
 		List<Order> expiredList = orderJDBC.getExpired();
 		model.addAttribute("expiredList", expiredList);
 		return "expiredHistory";
 	}
-	
+
 	@RequestMapping(value = "/Detail/{id}", method = RequestMethod.GET)
-	public String getOrderDetail(ModelMap model, HttpServletRequest request, @PathVariable int id){
+	public String getOrderDetail(ModelMap model, HttpServletRequest request, @PathVariable int id) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		OrderJDBC orderJDBC = (OrderJDBC) context.getBean("orderJDBC");
 		Order order = orderJDBC.getOne(id);
 		model.addAttribute("order", order);
 		OrderDetailJDBC detailJDBC = (OrderDetailJDBC) context.getBean("orderDetailJDBC");
 		List<OrderDetail> detailList = detailJDBC.getDetailByOrderId(id);
-		model.addAttribute("detailList",detailList);
+		model.addAttribute("detailList", detailList);
 		return "detailOrder";
 	}
-	
+
 	@RequestMapping(value = "/Return/{id}", method = RequestMethod.GET)
-	public String returnOrder(ModelMap model, HttpServletRequest request, @PathVariable int id, RedirectAttributes redirectAtt){
+	public String returnOrder(ModelMap model, HttpServletRequest request, @PathVariable int id,
+			RedirectAttributes redirectAtt) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		OrderJDBC orderJDBC = (OrderJDBC) context.getBean("orderJDBC");
 		OrderDetailJDBC detailJDBC = (OrderDetailJDBC) context.getBean("orderDetailJDBC");
@@ -84,13 +108,14 @@ public class OrderController {
 			redirectAtt.addFlashAttribute("success", "Trả sách thành công");
 		} else {
 			redirectAtt.addFlashAttribute("error", "Trả sách thất bại");
-		}	
+		}
 		return "redirect:/Order";
 	}
-	
+
 	@RequestMapping(value = "/Delete/{id}", method = RequestMethod.GET)
-	public String DeleteOrder(ModelMap model, HttpServletRequest request, @PathVariable int id, RedirectAttributes redirectAtt){
-		context = new ClassPathXmlApplicationContext("Beans.xml");		
+	public String DeleteOrder(ModelMap model, HttpServletRequest request, @PathVariable int id,
+			RedirectAttributes redirectAtt) {
+		context = new ClassPathXmlApplicationContext("Beans.xml");
 		BookJDBC bookJDBC = (BookJDBC) context.getBean("bookJDBC");
 		OrderDetailJDBC detailJDBC = (OrderDetailJDBC) context.getBean("orderDetailJDBC");
 		// Dat lai trang thai cua sach
@@ -102,10 +127,13 @@ public class OrderController {
 			}
 		}
 		// Xoa orderDetail
-		int detail = detailJDBC.deleteDetailByOrderId(id);
-		if (detail != 1) {
-			redirectAtt.addFlashAttribute("error", "Xóa chi tiết đơn mượn sách thất bại");
+		if (detailList.size() > 0) {
+			int detail = detailJDBC.deleteDetailByOrderId(id);
+			if (detail != 1) {
+				redirectAtt.addFlashAttribute("error", "Xóa chi tiết đơn mượn sách thất bại");
+			}
 		}
+
 		// Xoa Order
 		OrderJDBC orderJDBC = (OrderJDBC) context.getBean("orderJDBC");
 		int order = orderJDBC.deleteOne(id);
@@ -113,7 +141,7 @@ public class OrderController {
 			redirectAtt.addFlashAttribute("success", "Xóa đơn mượn sách thành công");
 		} else {
 			redirectAtt.addFlashAttribute("error", "Xóa đơn mượn sách thất bại");
-		}		
+		}
 		return "redirect:/Order";
 	}
 }

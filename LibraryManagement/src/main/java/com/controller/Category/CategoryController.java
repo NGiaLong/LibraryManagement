@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.model.Category;
+import com.model.DAO.Book.BookJDBC;
 import com.model.DAO.Category.CategoryJDBC;
 
 @Controller
@@ -77,12 +78,18 @@ public class CategoryController {
 	}	
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/delete/{categoryId}")
-	public String deleteCategory(@PathVariable String categoryId, ModelMap model){
+	public String deleteCategory(@PathVariable String categoryId, RedirectAttributes redirectAtt, ModelMap model){
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		CategoryJDBC categoryJDBC = (CategoryJDBC) context.getBean("categoryJDBC");
-		Category category = categoryJDBC.getOne(Integer.parseInt(categoryId));
-		model.addAttribute(category);
-		return "deleteCategory";
+		BookJDBC bookJDBC = (BookJDBC) context.getBean("bookJDBC");		
+		if(bookJDBC.findByCategoryId(Integer.parseInt(categoryId))==null){
+			redirectAtt.addFlashAttribute("error", "Thể loại này không thể xóa do còn sách tồn tại");
+			return "redirect:/Category";
+		} else {
+			Category category = categoryJDBC.getOne(Integer.parseInt(categoryId));
+			model.addAttribute(category);
+			return "deleteCategory";
+		}		
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value="/postDelete")

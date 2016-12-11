@@ -62,4 +62,17 @@ public class BookJDBC implements BookDAO {
 		return jdbcTemplateObject.update(SQL, new Object[] {bookId});
 	}
 
+	@Override
+	public List<Book> findByCategoryId(int categoryId) {
+		String sql = "SELECT b.Id,b.Title,b.Description, b.Author,b.Edition, b.Publisher,c.Id,c.Name,b.Status FROM Books b, Categories c "
+				+ "WHERE b.CategoryId = c.Id AND b.CategoryId = " + categoryId;
+		try {
+			List<Book> listBook = jdbcTemplateObject.query(sql, new BookMapper());			
+			return listBook;
+		} catch (NullPointerException ex) {
+			System.out.println(ex.getMessage());
+			return null;
+		}
+	}
+
 }

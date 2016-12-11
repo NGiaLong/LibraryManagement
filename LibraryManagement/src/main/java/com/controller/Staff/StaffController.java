@@ -143,9 +143,29 @@ public class StaffController {
 			HttpServletRequest request, @PathVariable int id, RedirectAttributes redirectAtt) {
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		StaffJDBC staffJDBC = (StaffJDBC) context.getBean("staffJDBC");
+		StudentJDBC studentJDBC = (StudentJDBC) context.getBean("studentJDBC");
+		List<Staff> staffs = staffJDBC.getAll1();
+		List<Student> students = studentJDBC.getAll1();
+		for (Staff staff : staffs) {
+			if(staff.getEmail().equals(editStaffBean.getEmail()) && staff.getId() != id){
+				redirectAtt.addFlashAttribute("error", "Email đã tồn tại!");
+				return "redirect:/staff-management";
+			}
+		}
+		for (Student student : students) {
+			if(student.getEmail().equals(editStaffBean.getEmail())){
+				redirectAtt.addFlashAttribute("error", "Email đã tồn tại!");
+				return "redirect:/staff-management";
+			}
+		}
+		Staff staffss = (Staff) request.getSession().getAttribute("staffSession");
 		int editStaff = staffJDBC.editStaffById(id,
 				new Staff(editStaffBean.getName(), editStaffBean.getDateOfBirth(), editStaffBean.isGender(),
 						editStaffBean.getEmail(), editStaffBean.getAddress(), editStaffBean.getPhone()));
+		if(staffss.getId() == id){
+			Staff newStaff = (Staff) staffJDBC.getStaffById(id);
+			request.getSession().setAttribute("staffSession", newStaff);
+		}
 		if (editStaff == 1) {
 			redirectAtt.addFlashAttribute("success", "Sửa nhân viên thành công!");
 		} else {

@@ -64,7 +64,7 @@
 		if ((session.getAttribute("roleSession") == null)||((int)session.getAttribute("roleSession") == 1 && session.getAttribute("staffSession") == null)||((int)session.getAttribute("roleSession") == 2 && session.getAttribute("studentSession") == null)) {
 	%>
 	<script type="text/javascript">
-		window.location.href = "/LibraryManagement/login";
+		window.location.href = "/LibraryManagement/logout";
 	</script>
 	<%
 		return;

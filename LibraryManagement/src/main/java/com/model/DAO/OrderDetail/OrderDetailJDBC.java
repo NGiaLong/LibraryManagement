@@ -19,7 +19,7 @@ public class OrderDetailJDBC implements OrderDetailDAO{
 	
 	@Override
 	public List<OrderDetail> getDetailByOrderId(int orderId) {
-		String sql = "SELECT dt.Id, dt.OrderId, dt.BookId, b.Title, b.Author,dt.DatePaid, dt.Status "
+		String sql = "SELECT dt.Id, dt.OrderId, dt.BookId, b.Title, b.Author,dt.DatePaid "
 				+ "FROM OrderDetails dt, Books b WHERE dt.BookId = b.Id AND dt.OrderId = "+orderId;
 		try {
 			List<OrderDetail> detailList = jdbcTemplateObject.query(sql, new OrderDetailMapper());
@@ -33,6 +33,19 @@ public class OrderDetailJDBC implements OrderDetailDAO{
 	public int deleteDetailByOrderId(int orderId) {
 		String sql = "DELETE FROM OrderDetails WHERE OrderId = ?";
 		return jdbcTemplateObject.update(sql, new Object[] {orderId});
+	}
+	
+	@Override
+
+	public int addDetailByOBId(int orderId, int bookId){
+		String sql = "insert into OrderDetails( OrderId , BookId) values (?,?)";
+		String sql2 = "update Books set Status = '0' where Id = ?";
+		try {
+			 jdbcTemplateObject.update(sql2, new Object[]{bookId});
+			return jdbcTemplateObject.update(sql, new Object[] {orderId, bookId});
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 
 }

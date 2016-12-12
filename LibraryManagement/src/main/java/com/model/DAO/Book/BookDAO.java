@@ -6,6 +6,7 @@ import com.model.Book;
 
 public interface BookDAO {
 	public List<Book> getAll();
+	public List<Book> getAll1();
 	public Book getOne(int bookId);
 	public int updateBook(Book book);
 	public int deleteBook(int bookId);

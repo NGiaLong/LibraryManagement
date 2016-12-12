@@ -77,7 +77,7 @@ public class OrderJDBC implements OrderDAO {
 	}
 	@Override
 	public Order getLastOrder(){
-		String sql = "select top 1 SELECT o.Id, st.Id, st.Name, sta.Name, sta.Id, o.DatePurchase, o.DateExpire, o.Status "
+		String sql = "select top 1 o.Id, st.Id, st.Name, sta.Name, sta.Id, o.DatePurchase, o.DateExpire, o.Status "
 				+ "FROM Orders o, Students st, Staffs sta where o.StaffId = sta.Id AND o.StudentId = st.Id order by o.Id desc";
 		try {
 			Order order = jdbcTemplateObject.queryForObject(sql, new OrderMapper());

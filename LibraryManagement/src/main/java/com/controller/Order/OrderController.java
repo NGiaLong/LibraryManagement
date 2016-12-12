@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.model.Book;
 import com.model.Order;
 import com.model.OrderDetail;
 import com.model.Staff;
@@ -44,6 +45,21 @@ public class OrderController {
 		model.addAttribute("sList", students);
 		return "addOrder";
 	}
+	
+	@RequestMapping(value = "/Add/Detail/{orderId}", method = RequestMethod.GET)
+	public String addOrderDetail(@PathVariable int orderId,ModelMap model, HttpServletRequest request) {
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		OrderJDBC orderJDBC = (OrderJDBC) context.getBean("orderJDBC");
+		OrderDetailJDBC detailJDBC = (OrderDetailJDBC) context.getBean("orderDetailJDBC");
+		BookJDBC bookJDBC = (BookJDBC) context.getBean("bookJDBC");
+		List<Book> bookList = bookJDBC.getAll();
+		Order order = orderJDBC.getOne(orderId);
+		List<OrderDetail> oDList = detailJDBC.getDetailByOrderId(orderId);
+		model.addAttribute("bList", bookList);
+		model.addAttribute("order", order);
+		model.addAttribute("oDList", oDList);
+		return "addDetailForOrder";
+	}
 
 	@RequestMapping(value = "/Add/{stuId}", method = RequestMethod.GET)
 	public String addOrderId(@PathVariable int stuId, ModelMap model, HttpServletRequest request, RedirectAttributes redirectAtt) {
@@ -53,13 +69,13 @@ public class OrderController {
 		int add = orderJDBC.addOrder(stuId, staffss.getId());
 		Order order =  orderJDBC.getLastOrder();
 		int id = 0;
-		if(order != null)id = order.getId();
+		id = order.getId();
 		if (add == 1) {
 			redirectAtt.addFlashAttribute("success", "Tạo đơn mượn sách thành công");
 			
 //			request.getSession().setAttribute("orderSSId", id);
 			System.out.println("Là: " + id);
-			return "redirect:/Add/Detail";
+			return "redirect:/Order/Add/Detail/"+id;
 		} else {
 			redirectAtt.addFlashAttribute("error", "Tạo đơn mượn sách thất bại");
 			return "redirect:/Add";

@@ -53,13 +53,27 @@ public class OrderController {
 		OrderJDBC orderJDBC = (OrderJDBC) context.getBean("orderJDBC");
 		OrderDetailJDBC detailJDBC = (OrderDetailJDBC) context.getBean("orderDetailJDBC");
 		BookJDBC bookJDBC = (BookJDBC) context.getBean("bookJDBC");
-		List<Book> bookList = bookJDBC.getAll();
+		List<Book> bookList = bookJDBC.getAll1();
 		Order order = orderJDBC.getOne(orderId);
 		List<OrderDetail> oDList = detailJDBC.getDetailByOrderId(orderId);
 		model.addAttribute("bList", bookList);
 		model.addAttribute("order", order);
 		model.addAttribute("oDList", oDList);
 		return "addDetailForOrder";
+	}
+	
+	@RequestMapping(value = "/Add/Detail/{orderId}/{bookId}", method = RequestMethod.GET)
+	public String addDetail(@PathVariable int orderId,@PathVariable int bookId ,RedirectAttributes redirectAtt,ModelMap model, HttpServletRequest request) {
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+//		OrderJDBC orderJDBC = (OrderJDBC) context.getBean("orderJDBC");
+		OrderDetailJDBC detailJDBC = (OrderDetailJDBC) context.getBean("orderDetailJDBC");
+		int check = detailJDBC.addDetailByOBId(orderId, bookId);
+		if(check == 1){
+			redirectAtt.addFlashAttribute("success", "Thêm sách thành công");
+		} else {
+			redirectAtt.addFlashAttribute("error", "Thêm sách thất bại");
+		}
+		return "redirect:/Order/Add/Detail/"+orderId;
 	}
 
 	@RequestMapping(value = "/Add/{stuId}", method = RequestMethod.GET)

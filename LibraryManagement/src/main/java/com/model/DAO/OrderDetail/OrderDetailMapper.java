@@ -15,7 +15,6 @@ public class OrderDetailMapper implements RowMapper<OrderDetail>{
 		detail.setBookTitle(rs.getString(4));
 		detail.setBookAuthor(rs.getString(5));
 		detail.setDatePaid(rs.getDate(6));
-		detail.setStatus(rs.getBoolean(7));
 		return detail;
 	}
 }

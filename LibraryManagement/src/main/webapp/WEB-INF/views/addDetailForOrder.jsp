@@ -84,96 +84,84 @@
 			</div>
 			<hr>
 			<div class="row">
-				<c:choose>
-					<c:when test="${oDList.size() < 1 }">
-						<div class="alert alert-danger col-sm-6" align="center">
-							<h2>Không có chi tiết mượn sách</h2>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="col-sm-6">
-							<div class="lable">
-								<h2 align="center">Danh sách chi tiết</h2>
-							</div>
-							<table id="tableChiKhac" class="display">
-								<thead>
-									<th>STT</th>
-									<th>Tên sách</th>
-									<th>Tác giả</th>
-									<th>Thể loại</th>
-									<th></th>
-								</thead>
-								<tbody>
-									<%
-										i = 1;
-									%>
-									<c:forEach var="listValue1" items="${oDList}">
-										<tr>
-											<td><%=i%></td>
-											<td>${listValue1.getTitle()}</td>
-											<td>${listValue1.getAuthor()}</td>
-											<td>${listValue1.getCategoryName()}</td>
-											<td><a
-												href="/LibraryManagement/Order/Add/Detail/${order.getId() }/${listValue.getId() }"
-												class="btn btn-primary">Thêm</a></td>
-										</tr>
-										<%
-											i++;
-										%>
-									</c:forEach>
-								</tbody>
-							</table>
-
-
-						</div>
-					</c:otherwise>
-				</c:choose>
-
-			<div class="col-sm-6">
-				<div class="lable">
-					<h2 align="center">Sách còn trong kho</h2>
-				</div>
-				<table id="example" class="display">
-					<thead>
-						<th>STT</th>
-						<th>Tên sách</th>
-						<th>Tác giả</th>
-						<th>Thể loại</th>
-						<th></th>
-					</thead>
-					<tbody>
-						<%
-							i = 1;
-						%>
-						<c:forEach var="listValue" items="${bList}">
-							<tr>
-								<td><%=i%></td>
-								<td>${listValue.getTitle()}</td>
-								<td>${listValue.getAuthor()}</td>
-								<td>${listValue.getCategoryName()}</td>
-								<td><a
-									href="/LibraryManagement/Order/Add/Detail/${order.getId() }/${listValue.getId() }"
-									class="btn btn-primary">Thêm</a></td>
-							</tr>
+				<div class="col-sm-6">
+					<div class="lable">
+						<h2 align="center">Danh sách chi tiết</h2>
+					</div>
+					<table id="tableChiKhac" class="display">
+						<thead>
+							<th>STT</th>
+							<th>Tên sách</th>
+							<th>Tác giả</th>
+							<th></th>
+						</thead>
+						<tbody>
 							<%
-								i++;
+								i = 1;
 							%>
-						</c:forEach>
-					</tbody>
-				</table>
+							<c:forEach var="listValue" items="${oDList}">
+								<tr>
+									<td><%=i%></td>
+									<td>${listValue.getBookTitle()}</td>
+									<td>${listValue.getBookAuthor()}</td>
+									<td><a href="/LibraryManagement/Order/Add/Detail/${order.getId() }/${listValue.getBookId() }/delete" class="btn btn-danger">Bỏ</a></td>
+								</tr>
+								<%
+									i++;
+								%>
+							</c:forEach>
+						</tbody>
+					</table>
 
 
+				</div>
+
+
+				<div class="col-sm-6">
+					<div class="lable">
+						<h2 align="center">Sách còn trong kho</h2>
+					</div>
+					<table id="example" class="display">
+						<thead>
+							<th>STT</th>
+							<th>Tên sách</th>
+							<th>Tác giả</th>
+							<th>Thể loại</th>
+							<th></th>
+						</thead>
+						<tbody>
+							<%
+								i = 1;
+							%>
+							<c:forEach var="listValue" items="${bList}">
+								<tr>
+									<td><%=i%></td>
+									<td>${listValue.getTitle()}</td>
+									<td>${listValue.getAuthor()}</td>
+									<td>${listValue.getCategoryName()}</td>
+									<td><a
+										href="/LibraryManagement/Order/Add/Detail/${order.getId() }/${listValue.getId() }"
+										class="btn btn-primary">Thêm</a></td>
+								</tr>
+								<%
+									i++;
+								%>
+							</c:forEach>
+						</tbody>
+					</table>
+
+
+				</div>
+			</div>
+			<hr>
+			<div class="row" align="right">
+				<a href="/LibraryManagement/Order/Delete/${order.getId() }" class="btn btn-danger">Hủy</a> <a href="/LibraryManagement/Order"
+					class="btn btn-success">Tạo</a>
 			</div>
 		</div>
-		<hr>
-		<div class="row" align="right">
-			<a href="" class="btn btn-danger">Hủy</a> <a href=""
-				class="btn btn-success">Tạo</a>
-		</div>
-	</div>
-	<!-- /.container-fluid -->
+		<!-- /.container-fluid -->
 
-</div>
-<!-- /#page-wrapper -->
+	</div>
+	<!-- /#page-wrapper -->
 </div>
 <jsp:include page="layouts/bot.jsp"></jsp:include>

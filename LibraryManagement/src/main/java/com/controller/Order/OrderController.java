@@ -160,7 +160,7 @@ public class OrderController {
 		// Xoa orderDetail
 		if (detailList.size() > 0) {
 			int detail = detailJDBC.deleteDetailByOrderId(id);
-			if (detail != 1) {
+			if (detail == 0) {
 				redirectAtt.addFlashAttribute("error", "Xóa chi tiết đơn mượn sách thất bại");
 			}
 		}

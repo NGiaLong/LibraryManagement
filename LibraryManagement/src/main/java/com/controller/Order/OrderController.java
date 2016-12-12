@@ -2,6 +2,7 @@ package com.controller.Order;
 
 import java.util.List;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.context.ApplicationContext;
@@ -159,5 +160,19 @@ public class OrderController {
 			redirectAtt.addFlashAttribute("error", "Xóa đơn mượn sách thất bại");
 		}
 		return "redirect:/Order";
+	}
+	
+	@RequestMapping(value = "/orderList", method = RequestMethod.GET)
+	public String getListOrderByUser(ModelMap model, HttpServletRequest request, RedirectAttributes redirectAtt){
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		OrderJDBC orderJDBC = (OrderJDBC) context.getBean("orderJDBC");
+		if(request.getSession().getAttribute("studentSession")==null){
+			redirectAtt.addFlashAttribute("error", "Bạn không có quyền truy cập vào trang này");
+			return "redirect:/thongtincanhan";
+		}
+		Student std = (Student) request.getSession().getAttribute("studentSession");		
+		List<Order> orderList = orderJDBC.getBorrowedByUserId(std.getId());
+		model.addAttribute("orderList", orderList);
+		return "indexOrderStudent";
 	}
 }

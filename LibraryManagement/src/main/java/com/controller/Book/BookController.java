@@ -1,8 +1,12 @@
 package com.controller.Book;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -12,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.model.Book;
@@ -93,4 +99,21 @@ public class BookController {
 		}
 		return "redirect:/Book";
 	}
+	
+	/*@RequestMapping(value = "/savefile", method = RequestMethod.POST)
+	public String upload(@RequestParam CommonsMultipartFile file, HttpSession session) {
+		String filename = file.getOriginalFilename();
+
+		try {
+			byte barr[] = file.getBytes();
+			OutputStream bout = new FileOutputStream(session.getServletContext().getRealPath()+ filename);
+
+			bout.write(barr);
+			bout.flush();
+			bout.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return "redirect:/Book";
+	}*/
 }

@@ -11,4 +11,5 @@ public interface BookDAO {
 	public int deleteBook(int bookId);
 	public int addBook(Book book);
 	public int updateStatus(int bookId);
+	public List<Book> findByCategoryId(int categoryId);
 }

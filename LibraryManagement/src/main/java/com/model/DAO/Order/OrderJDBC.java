@@ -86,4 +86,17 @@ public class OrderJDBC implements OrderDAO {
 			return null;
 		}
 	}
+
+	@Override
+	public List<Order> getBorrowedByUserId(int userId) {
+		String sql = "SELECT o.Id, st.Id, st.Name, sta.Name, sta.Id, o.DatePurchase, o.DateExpire, o.Status "
+				+ "FROM Orders o, Students st, Staffs sta where o.StaffId = sta.Id AND o.StudentId = st.Id AND "
+				+ "o.Status=0 AND o.StudentId = " + userId;
+		try {
+			List<Order> listOrder = jdbcTemplateObject.query(sql, new OrderMapper());
+			return listOrder;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

@@ -17,6 +17,7 @@
 	<!--/.row-->
 	<div class="header">
 		<h1>DANH SÁCH TÀI LIỆU</h1>
+		<hr>
 	</div>
 	<c:if test="${success != null }">
 		<div class="alert alert-success">${success }</div>
@@ -25,11 +26,20 @@
 		<div class="alert alert-danger">${error }</div>
 	</c:if>
 	<div class="content">
-		<a href="Book/add"><input class="btn btn-primary"
-			type="submit" value="Tạo mới sách"></a>
-		<div>
-			</br>
+		<div class="row">
+			<div class="col-md-6 form-inline">
+				<form action="Book/savefile" method="post"
+					enctype="multipart/form-data">
+					Select File: <input type="file" name="file" class="form-control" />
+					<input type="submit" value="Upload File" class="btn btn-info" />
+				</form>
+			</div>
+			<div class="col-md-6 pull-right">
+				<a href="Book/add"><input class="btn btn-primary" type="submit"
+					value="Tạo mới sách"></a>
+			</div>
 		</div>
+		</br>
 		<table id="example" class="display">
 			<thead>
 				<th>STT</th>

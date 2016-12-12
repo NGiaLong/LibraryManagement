@@ -1,7 +1,11 @@
 package com.controller.Book;
 
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
 
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,6 +29,7 @@ import com.model.Book;
 import com.model.Category;
 import com.model.DAO.Book.BookJDBC;
 import com.model.DAO.Category.CategoryJDBC;
+import com.opencsv.CSVReader;
 
 @Controller
 @RequestMapping(value = "/Book")
@@ -100,20 +106,62 @@ public class BookController {
 		return "redirect:/Book";
 	}
 	
-	/*@RequestMapping(value = "/savefile", method = RequestMethod.POST)
-	public String upload(@RequestParam CommonsMultipartFile file, HttpSession session) {
-		String filename = file.getOriginalFilename();
-
-		try {
-			byte barr[] = file.getBytes();
-			OutputStream bout = new FileOutputStream(session.getServletContext().getRealPath()+ filename);
-
-			bout.write(barr);
-			bout.flush();
-			bout.close();
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return "redirect:/Book";
-	}*/
+	@RequestMapping(value = "/uploadExcel", method = RequestMethod.GET)
+	public String upload(ModelMap model, HttpServletRequest request) {
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		CategoryJDBC categoryJDBC = (CategoryJDBC) context.getBean("categoryJDBC");
+		List<Category> categoryList = categoryJDBC.getAll();
+		model.addAttribute("categoryList", categoryList);
+		return "uploadExcel";
+	}
+	
+	@RequestMapping(value = "/savefile", method = RequestMethod.POST)	
+	public String uploadFile(ModelMap model,@RequestParam MultipartFile file, HttpServletRequest request) {	 
+	    if (file.isEmpty()) {
+	        model.put("error", "failed to upload file because its empty");
+	        return "mainpage";
+	    }
+	    String rootPath = request.getSession().getServletContext().getRealPath("/");
+	    File dir = new File(rootPath + File.separator + "uploadedfile");
+	    if (!dir.exists()) {
+	        dir.mkdirs();
+	    }
+	    File serverFile = new File(dir.getAbsolutePath() + File.separator + file.getOriginalFilename());	 
+	    try {
+	        try (InputStream is = file.getInputStream();
+	                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile))) {
+	            int i;
+	            //write file to server
+	            while ((i = is.read()) != -1) {
+	                stream.write(i);
+	            }
+	            stream.flush();
+	        }
+	    } catch (IOException e) {
+	        model.put("error", "failed to process file because : " + e.getMessage());
+	        return "mainpage";
+	    }
+	 
+	    String[] nextLine;
+	    try {
+	        //read file
+	        //CSVReader(fileReader, ';', '\'', 1) means
+	        //using separator ; and using single quote ' . Skip first line when read
+	 
+	        try (FileReader fileReader = new FileReader(serverFile);
+	            CSVReader reader = new CSVReader(fileReader, ';', '\'', 1);) {
+	            while ((nextLine = reader.readNext()) != null) {
+	                System.out.println("content : ");
+	                for(int i=0;i<nextLine.length;i++){
+	                    System.out.println(nextLine[i]);
+	                }
+	            }
+	        }
+	    } catch (IOException e) {
+	        System.out.println("error while reading csv and put to db : " + e.getMessage());
+	    } 
+	 
+	    model.put("error", "success upload and process file");
+	    return "mainpage";
+	}
 }

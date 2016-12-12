@@ -28,14 +28,11 @@
 	<div class="content">
 		<div class="row">
 			<div class="col-md-6 form-inline">
-				<form action="Book/savefile" method="post"
-					enctype="multipart/form-data">
-					Select File: <input type="file" name="file" class="form-control" />
-					<input type="submit" value="Upload File" class="btn btn-info" />
-				</form>
+				<a href="Book/uploadExcel"><input class="btn btn-success" type="submit"
+					value="Tạo bằng file"></a>
 			</div>
-			<div class="col-md-6 pull-right">
-				<a href="Book/add"><input class="btn btn-primary" type="submit"
+			<div class="col-md-6">
+				<a href="Book/add" class="pull-right"><input class="btn btn-primary" type="submit"
 					value="Tạo mới sách"></a>
 			</div>
 		</div>

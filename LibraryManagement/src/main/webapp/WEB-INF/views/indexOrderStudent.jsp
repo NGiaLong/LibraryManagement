@@ -16,7 +16,7 @@
 	</div>
 	<!--/.row-->
 	<div class="header">
-		<h1>DANH SÁCH THUÊ SÁCH</h1>
+		<h1>DANH SÁCH ĐƠN MƯỢN SÁCH</h1>
 	</div>
 	</br>
 	<c:if test="${success != null }">

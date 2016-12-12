@@ -104,7 +104,7 @@
 									<td><%=i%></td>
 									<td>${listValue.getBookTitle()}</td>
 									<td>${listValue.getBookAuthor()}</td>
-									<td><a href="/LibraryManagement/Order/Add/Detail/${order.getId() }/${listValue.getBookId() }/delete" class="btn btn-danger">Bỏ</a></td>
+									<td><a href="/LibraryManagement/Order/Add/Detail/${order.getId() }/delete/${listValue.getId()}" class="btn btn-danger">Bỏ</a></td>
 								</tr>
 								<%
 									i++;

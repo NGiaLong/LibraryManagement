@@ -28,11 +28,34 @@ public class OrderDetailJDBC implements OrderDetailDAO{
 			return null;
 		}
 	}
+	
+	@Override
+	public OrderDetail getDetailById(int id) {
+		String sql = "SELECT dt.Id, dt.OrderId, dt.BookId, b.Title, b.Author,dt.DatePaid "
+				+ "FROM OrderDetails dt, Books b WHERE dt.BookId = b.Id AND dt.Id = "+id;
+		try {
+			OrderDetail detailList = jdbcTemplateObject.queryForObject(sql, new OrderDetailMapper());
+			return detailList;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
 	@Override
 	public int deleteDetailByOrderId(int orderId) {
 		String sql = "DELETE FROM OrderDetails WHERE OrderId = ?";
 		return jdbcTemplateObject.update(sql, new Object[] {orderId});
+	}
+	
+	@Override
+	public int deleteDetailById(int id) {
+		String sql = "DELETE FROM OrderDetails WHERE Id = ?";
+		try {
+			return jdbcTemplateObject.update(sql, new Object[] {id});
+		} catch (Exception e) {
+			return 0;
+		}
+		
 	}
 	
 	@Override

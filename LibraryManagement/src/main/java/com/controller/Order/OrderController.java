@@ -75,6 +75,29 @@ public class OrderController {
 		}
 		return "redirect:/Order/Add/Detail/"+orderId;
 	}
+	
+	@RequestMapping(value = "/Add/Detail/{orderId}/delete/{id}", method = RequestMethod.GET)
+	public String removedDetail(@PathVariable int id, @PathVariable int orderId,RedirectAttributes redirectAtt,ModelMap model, HttpServletRequest request) {
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		BookJDBC bookJDBC = (BookJDBC) context.getBean("bookJDBC");
+		OrderDetailJDBC detailJDBC = (OrderDetailJDBC) context.getBean("orderDetailJDBC");
+		OrderDetail oDetail = (OrderDetail) detailJDBC.getDetailById(id);
+		int m = 0;
+	
+			m = bookJDBC.updateStatus(oDetail.getBookId());
+		
+		if(m == 0){
+			redirectAtt.addFlashAttribute("error", "Bỏ sách thất bại");
+		}else{
+			int check = detailJDBC.deleteDetailById(id);
+			if(check == 1 ){
+				redirectAtt.addFlashAttribute("success", "Bỏ sách thành công");
+			} else {
+				redirectAtt.addFlashAttribute("error", "Bỏ sách thất bại");
+			}
+		}
+		return "redirect:/Order/Add/Detail/"+orderId;
+	}
 
 	@RequestMapping(value = "/Add/{stuId}", method = RequestMethod.GET)
 	public String addOrderId(@PathVariable int stuId, ModelMap model, HttpServletRequest request, RedirectAttributes redirectAtt) {

@@ -195,7 +195,21 @@
 				}
 				if ((int)session.getAttribute("roleSession") == 2) {
 			%>
-
+				<li class="parent "><a href="/LibraryManagement/Order/OrderList"> <span
+					data-toggle="collapse" href="#sub-item-4"><svg
+							class="glyph stroked chevron-down"> <use
+							xlink:href="#stroked-chevron-down"></use></svg></span> Quản lý mượn
+			</a>
+				<ul class="children collapse" id="sub-item-4">					
+					<li><a class="" href="/LibraryManagement/Order/OrderList"> <svg
+								class="glyph stroked chevron-right"> <use
+								xlink:href="#stroked-chevron-right"></use></svg> Sách đang mượn
+					</a></li>
+					<li><a class="" href="/LibraryManagement/Order/OrderHistory"> <svg
+								class="glyph stroked chevron-right"> <use
+								xlink:href="#stroked-chevron-right"></use></svg> Lịch sử mượn sách
+					</a></li>
+				</ul></li>
 			<%
 				}
 			%>

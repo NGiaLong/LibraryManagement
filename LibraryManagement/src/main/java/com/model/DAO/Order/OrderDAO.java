@@ -13,4 +13,5 @@ public interface OrderDAO {
 	public int updateStatus(int id);
 	public int addOrder(int stuId, int staId);
 	public List<Order> getBorrowedByUserId(int userId);
+	public List<Order> getHistoryByUserId(int userId);
 }

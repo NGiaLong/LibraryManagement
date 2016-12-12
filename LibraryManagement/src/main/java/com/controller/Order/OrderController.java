@@ -199,7 +199,7 @@ public class OrderController {
 		return "redirect:/Order";
 	}
 	
-	@RequestMapping(value = "/orderList", method = RequestMethod.GET)
+	@RequestMapping(value = "/OrderList", method = RequestMethod.GET)
 	public String getListOrderByUser(ModelMap model, HttpServletRequest request, RedirectAttributes redirectAtt){
 		context = new ClassPathXmlApplicationContext("Beans.xml");
 		OrderJDBC orderJDBC = (OrderJDBC) context.getBean("orderJDBC");
@@ -209,6 +209,20 @@ public class OrderController {
 		}
 		Student std = (Student) request.getSession().getAttribute("studentSession");		
 		List<Order> orderList = orderJDBC.getBorrowedByUserId(std.getId());
+		model.addAttribute("orderList", orderList);
+		return "indexOrderStudent";
+	}
+	
+	@RequestMapping(value = "/OrderHistory", method = RequestMethod.GET)
+	public String getListOrderHistoryByUser(ModelMap model, HttpServletRequest request, RedirectAttributes redirectAtt){
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		OrderJDBC orderJDBC = (OrderJDBC) context.getBean("orderJDBC");
+		if(request.getSession().getAttribute("studentSession")==null){
+			redirectAtt.addFlashAttribute("error", "Bạn không có quyền truy cập vào trang này");
+			return "redirect:/thongtincanhan";
+		}
+		Student std = (Student) request.getSession().getAttribute("studentSession");		
+		List<Order> orderList = orderJDBC.getHistoryByUserId(std.getId());
 		model.addAttribute("orderList", orderList);
 		return "indexOrderStudent";
 	}

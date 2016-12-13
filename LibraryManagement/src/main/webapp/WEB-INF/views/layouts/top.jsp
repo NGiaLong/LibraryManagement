@@ -147,7 +147,7 @@
 								class="glyph stroked chevron-right"> <use
 								xlink:href="#stroked-chevron-right"></use></svg> Thêm sách
 					</a></li>
-					<li><a class="" href="/FFVStore/taomonan"> <svg
+					<li><a class="" href="/LibraryManagement/Book/uploadExcel"> <svg
 								class="glyph stroked chevron-right"> <use
 								xlink:href="#stroked-chevron-right"></use></svg> Import sách mới
 					</a></li>

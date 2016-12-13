@@ -157,6 +157,7 @@ public class OrderController {
 				redirectAtt.addFlashAttribute("error", "Lỗi cập nhật trạng thái sách");
 			}
 		}
+		int setDetail = detailJDBC.updateDetail(id);
 		int order = orderJDBC.updateStatus(id);
 		if (order == 1) {
 			redirectAtt.addFlashAttribute("success", "Trả sách thành công");

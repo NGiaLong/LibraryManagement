@@ -109,7 +109,7 @@
 											<c:out value="Chưa trả"></c:out>
 										</c:otherwise>
 									</c:choose></td>
-								<td>${listValue.getDatePaid()}</td>								
+								<td>${listValue.getDatePaid()}</td>
 							</tr>
 							<%
 								i++;

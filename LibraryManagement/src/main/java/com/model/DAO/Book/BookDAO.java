@@ -13,4 +13,5 @@ public interface BookDAO {
 	public int addBook(Book book);
 	public int updateStatus(int bookId);
 	public List<Book> findByCategoryId(int categoryId);
+	public List<Book> getRemain();
 }

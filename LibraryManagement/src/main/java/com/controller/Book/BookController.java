@@ -201,4 +201,13 @@ public class BookController {
 	    model.put("success", "success upload and process file");
 	    return "redirect:/Book";
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/remain")
+	public String getRemainBooks(ModelMap model, HttpServletRequest request) {
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		BookJDBC bookJDBC = (BookJDBC) context.getBean("bookJDBC");
+		List<Book> listBook = bookJDBC.getRemain();
+		model.addAttribute("listBook", listBook);
+		return "remainBook";
+	}
 }

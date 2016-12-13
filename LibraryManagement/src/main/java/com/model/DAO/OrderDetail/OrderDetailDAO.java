@@ -11,4 +11,5 @@ public interface OrderDetailDAO {
 	public int addDetailByOBId(int orderId, int bookId);
 	List<OrderDetail> getListByBookId(int bookId);
 	int deleteDetailById(int id);
+	public int updateDetail(int orderId);
 }

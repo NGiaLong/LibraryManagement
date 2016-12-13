@@ -70,8 +70,8 @@ public class BookJDBC implements BookDAO {
 
 	@Override
 	public int updateStatus(int bookId) {
-		String SQL = "update Books set Status = 1 WHERE Id = ? ";
-		return jdbcTemplateObject.update(SQL, new Object[] {bookId});
+		String SQL = "update Books set Status = 1 WHERE Id = " + bookId;
+		return jdbcTemplateObject.update(SQL);
 	}
 
 	@Override

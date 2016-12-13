@@ -61,7 +61,7 @@ public class OrderDetailJDBC implements OrderDetailDAO{
 	@Override
 
 	public int addDetailByOBId(int orderId, int bookId){
-		String sql = "insert into OrderDetails( OrderId , BookId) values (?,?)";
+		String sql = "insert into OrderDetails( OrderId , BookId, Status) values (?,?,0 )";
 		String sql2 = "update Books set Status = '0' where Id = ?";
 		try {
 			 jdbcTemplateObject.update(sql2, new Object[]{bookId});

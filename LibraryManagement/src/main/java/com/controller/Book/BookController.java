@@ -29,6 +29,7 @@ import com.model.Book;
 import com.model.Category;
 import com.model.DAO.Book.BookJDBC;
 import com.model.DAO.Category.CategoryJDBC;
+import com.model.DAO.OrderDetail.OrderDetailJDBC;
 import com.opencsv.CSVReader;
 
 @Controller
@@ -113,6 +114,35 @@ public class BookController {
 		List<Category> categoryList = categoryJDBC.getAll();
 		model.addAttribute("categoryList", categoryList);
 		return "uploadExcel";
+	}
+	
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET )
+	public String deleteBook(@PathVariable int id, ModelMap model, HttpServletRequest request,
+			RedirectAttributes redirectAtt){		
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		BookJDBC bookJDBC = (BookJDBC) context.getBean("bookJDBC");
+		Book book = bookJDBC.getOne(id);
+		OrderDetailJDBC detailJDBC = (OrderDetailJDBC) context.getBean("orderDetailJDBC");
+		if(detailJDBC.getListByBookId(id).size()>0){
+			redirectAtt.addFlashAttribute("error", "Không thể xóa sách khi đã cho thuê!");
+			return "redirect:/Book";
+		}
+		model.addAttribute("book", book);
+		return "deleteBook";		
+	}
+	
+	@RequestMapping(value = "/postDelete", method = RequestMethod.POST)
+	public String postDeleteBook(ModelMap model, HttpServletRequest request,
+			RedirectAttributes redirectAtt) {
+		context = new ClassPathXmlApplicationContext("Beans.xml");
+		BookJDBC bookJDBC = (BookJDBC) context.getBean("bookJDBC");
+		int deleteBook = bookJDBC.deleteBook(Integer.parseInt(request.getParameter("id")));
+		if (deleteBook == 1) {
+			redirectAtt.addFlashAttribute("success", "Xóa sách thành công!");
+		} else {
+			redirectAtt.addFlashAttribute("error", "Xóa sách thất bại!");
+		}
+		return "redirect:/Book";
 	}
 	
 	@RequestMapping(value = "/savefile", method = RequestMethod.POST)	

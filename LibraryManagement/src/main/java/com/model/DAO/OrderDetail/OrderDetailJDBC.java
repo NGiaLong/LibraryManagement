@@ -48,4 +48,16 @@ public class OrderDetailJDBC implements OrderDetailDAO{
 		}
 	}
 
+	@Override
+	public List<OrderDetail> getListByBookId(int bookId) {
+		String sql = "SELECT dt.Id, dt.OrderId, dt.BookId, b.Title, b.Author,dt.DatePaid "
+				+ "FROM OrderDetails dt, Books b WHERE dt.BookId = b.Id AND dt.BookId = "+bookId;
+		try {
+			List<OrderDetail> detailList = jdbcTemplateObject.query(sql, new OrderDetailMapper());
+			return detailList;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 }

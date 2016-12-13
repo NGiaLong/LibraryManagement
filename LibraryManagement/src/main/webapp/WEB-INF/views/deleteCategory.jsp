@@ -37,7 +37,7 @@
 				<h4>Thể loại: ${category.getName()}</h4>				
 			</div>
 			<button type="submit" class="btn btn-danger">Xóa</button>
-			<a href="/LibraryManagement/Category/" class="btn btn-default">Quay lại</a>
+			<a href="../../Category" class="btn btn-default">Quay lại</a>
 		</form>		
 	</div>
 </div>

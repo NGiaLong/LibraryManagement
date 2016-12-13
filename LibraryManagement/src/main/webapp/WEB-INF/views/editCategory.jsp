@@ -39,7 +39,7 @@
 
 		</form>
 		<div>
-			<a href="/LibraryManagement/Category/" class="btn btn-default">Quay
+			<a href="../../Category" class="btn btn-default">Quay
 				lại</a>
 		</div>
 	</div>

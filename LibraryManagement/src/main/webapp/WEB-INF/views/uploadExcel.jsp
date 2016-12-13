@@ -48,7 +48,7 @@
 						</div>
 					</div>
 				</div>
-				<a href="Book" class="btn btn-default">Quay lại</a> 
+				<a href="../Book" class="btn btn-default">Quay lại</a> 
 				<input type="submit" value="Upload File" class="btn btn-info" />
 			</form>
 		</div>

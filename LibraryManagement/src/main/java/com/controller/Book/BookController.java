@@ -116,10 +116,10 @@ public class BookController {
 	}
 	
 	@RequestMapping(value = "/savefile", method = RequestMethod.POST)	
-	public String uploadFile(ModelMap model,@RequestParam MultipartFile file, HttpServletRequest request) {	 
+	public String uploadFile(ModelMap model,@RequestParam MultipartFile file, HttpServletRequest request, RedirectAttributes redirectAtt) {	 
 	    if (file.isEmpty()) {
 	        model.put("error", "failed to upload file because its empty");
-	        return "mainpage";
+	        return "redirect:/Book/uploadExcel";
 	    }
 	    String rootPath = request.getSession().getServletContext().getRealPath("/");
 	    File dir = new File(rootPath + File.separator + "uploadedfile");
@@ -139,7 +139,7 @@ public class BookController {
 	        }
 	    } catch (IOException e) {
 	        model.put("error", "failed to process file because : " + e.getMessage());
-	        return "mainpage";
+	        return "redirect:/Book/uploadExcel";
 	    }
 	 
 	    String[] nextLine;
@@ -147,13 +147,20 @@ public class BookController {
 	        //read file
 	        //CSVReader(fileReader, ';', '\'', 1) means
 	        //using separator ; and using single quote ' . Skip first line when read
-	 
+	    	BookJDBC bookJDBC = (BookJDBC) context.getBean("bookJDBC");
 	        try (FileReader fileReader = new FileReader(serverFile);
 	            CSVReader reader = new CSVReader(fileReader, ';', '\'', 1);) {
-	            while ((nextLine = reader.readNext()) != null) {
-	                System.out.println("content : ");
+	            while ((nextLine = reader.readNext()) != null) {	                
 	                for(int i=0;i<nextLine.length;i++){
-	                    System.out.println(nextLine[i]);
+	                    Book book = new Book();
+	                    book.setTitle(nextLine[i].split(",")[0]);
+	                    book.setDescription("");
+	                    book.setAuthor(nextLine[i].split(",")[1]);
+	                    book.setEdition(Integer.parseInt(nextLine[i].split(",")[2]));
+	                    book.setPublisher(nextLine[i].split(",")[3]);
+	                    book.setCategoryId(Integer.parseInt(request.getParameter("categoryId")));
+	                    book.setStatus(true);
+	                	bookJDBC.addBook(book);
 	                }
 	            }
 	        }
@@ -161,7 +168,7 @@ public class BookController {
 	        System.out.println("error while reading csv and put to db : " + e.getMessage());
 	    } 
 	 
-	    model.put("error", "success upload and process file");
-	    return "mainpage";
+	    model.put("success", "success upload and process file");
+	    return "redirect:/Book";
 	}
 }
